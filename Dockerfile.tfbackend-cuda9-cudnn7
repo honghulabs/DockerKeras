@@ -28,7 +28,7 @@ MAINTAINER Chi-Hung Weng <wengchihung@gmail.com>
 ARG BAZEL_VER=0.6.1
 ARG TF_VER=9ff05e9
 ARG OPENCV_VER=af8ed9d
-ARG NUM_CPUS_FOR_BUILD=$(($(nproc)/2))
+ARG NUM_CPUS_FOR_BUILD=4
 
 RUN apt update && apt install -y --no-install-recommends \
         build-essential \
