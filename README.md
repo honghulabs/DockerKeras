@@ -12,7 +12,7 @@ Currently, I maintain the following two types of docker images
 2. *Keras using CNTK Backend*
 
 ## Keras using Tensorflow Backend
-this environment is retrievable by issuing the following command
+This environment is retrievable by issuing the following command
 ```bash
 docker pull honghu/keras:tf-cu9-dnn7-py3
 ```
@@ -23,7 +23,7 @@ All the above-mentioned packages are built for Python3.
 This image also take advantage of NVIDIA's CUDA 9 and cuDNN7.
 
 ## Keras using CNTK Backend
-this environment is retrievable by issuing the following command
+This environment is retrievable by issuing the following command
 ```bash
 docker pull honghu/keras:cntk-cu8-dnn6-py3
 ```
