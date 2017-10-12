@@ -1,6 +1,6 @@
 # Dockerbuilds-Keras
 
-We like Keras.
+You've just found Docker images built for Keras.
 
 My goal is to provide a variety of deep learning environments primarily for Keras.
 
