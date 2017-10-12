@@ -11,6 +11,8 @@ Currently, I maintain the following two types of docker images
 1. *Keras using Tensorflow Backened* 
 2. *Keras using CNTK Backend*
 
+You can retrieve them easily through [Dockerhub](https://hub.docker.com/r/honghu/keras/).
+
 ## Keras using Tensorflow Backend
 This environment is retrievable by issuing the following command
 ```bash
