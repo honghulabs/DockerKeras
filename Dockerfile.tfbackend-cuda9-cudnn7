@@ -15,8 +15,6 @@
 # This Dockerfile builds a Deep Learning & Python3 environment covering:
 # Keras, Tensorflow and OpenCV.
 #
-# I will do my best to ensure that the latest CUDA & cuDNN is used.
-#
 # This file modifies a Dockerfile that is originally 
 # written by the TensorFlow Authors (see the link below).
 # https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/Dockerfile.devel-gpu
