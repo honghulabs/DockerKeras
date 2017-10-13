@@ -44,6 +44,6 @@ docker pull honghu/keras:mx-cu9-dnn7-py3
 ```
 which covers Keras```v1.2.2```, MXNET```v0.11.1```, OpenCV```v3.3.0-dev``` and some packages that are common to Data Mining such as Pandas, Scikit-Learn, Matplotlib and Seaborn.
 
-All the above-mentioned packages are built for Python```3```.
-
-This image takes advantage of NVIDIA's CUDA```9``` and cuDNN```7``` while building MXNET and OpenCV.
+Remark
+* All the above-mentioned packages are built for Python```3```.
+* This image takes advantage of NVIDIA's CUDA```9``` and cuDNN```7``` while building MXNET and OpenCV.
