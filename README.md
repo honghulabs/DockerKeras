@@ -54,7 +54,7 @@ This environment is retrievable by issuing the following command
 docker pull honghu/keras:mx-cu9-dnn7-py3
 ```
 which includes
-1. [keras-mxnet](https://pypi.python.org/pypi/keras-mxnet/1.2.2)```v1.2.2```
+1. [Keras-MXNET](https://pypi.python.org/pypi/keras-mxnet/1.2.2)```v1.2.2```
 2. MXNET```v0.11.1```&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://img.shields.io/badge/build-from%20source-brightgreen.svg)
 3. OpenCV```v3.3.0-dev``` ![](https://img.shields.io/badge/build-from%20source-brightgreen.svg)
 4. common packages for Data Mining: Pandas, Scikit-Learn, Matplotlib and Seaborn.
@@ -62,7 +62,7 @@ which includes
 Remark
 * All the above-mentioned packages are built for Python```3```.
 * MXNET and OpenCV are built from source. Both of them take advantage of NVIDIA's CUDA```9``` and cuDNN```7```.
-* The MXNET backend is under developing. Go to [DMLC's Github](https://github.com/dmlc/keras) for some more details.
+* The MXNET backend is under development. Go to [DMLC's Github](https://github.com/dmlc/keras) for some more details.
 
 ## Keras using Theano Backend
 This environment is retrievable by issuing the following command
