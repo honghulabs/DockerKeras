@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # This is a wrapper file that helps you to run your script within our container.
+
 # Examples of Usage (print Tensorflow's version within the container):
 #   printf "import tensorflow \nprint('tensorflow version=',tensorflow.__version__)" > check_tf_version.py
 #   ndrun -t tf-cu9-dnn7-py3 python3 check_tf_version.py 
