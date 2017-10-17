@@ -207,7 +207,7 @@ within your home directory.
 Next, we will run *cifar10_multi_gpu_train.py*, which is located at *models/tutorials/image/cifar10/*. Let's first ask for help in order to find out what the acceptable input arguments are:
 
 ```bash
-ndrun python3 models/tutorials/image/cifar10/cifar10_multi_gpu_train.py --help
+./ndrun python3 models/tutorials/image/cifar10/cifar10_multi_gpu_train.py --help
 ```
 which returns the following output:
 
