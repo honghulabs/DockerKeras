@@ -15,6 +15,10 @@
 # This Dockerfile builds a Deep Learning & Python3 environment covering:
 # Keras, Tensorflow and OpenCV.
 #
+# WARNING: TensorFlow built by this image supports CPU instructions
+# such as SSE4.1, SSE4.2, AVX, AVC2, FMA. If these instructions are 
+# not supported by your CPU, please do not use this Dockerfile.
+#
 # This file modifies a Dockerfile that is originally 
 # maintained by the TensorFlow Authors (see the link below).
 # https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/Dockerfile.devel-gpu
@@ -24,7 +28,7 @@ FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 MAINTAINER Chi-Hung Weng <wengchihung@gmail.com>
 
 # Specify number of CPUs can be used while building Tensorflow and OpenCV.
-ARG NUM_CPUS_FOR_BUILD=4
+ARG NUM_CPUS_FOR_BUILD=40
 
 # Specify the version of Bazel.
 ARG BAZEL_VER=0.6.1
@@ -74,12 +78,12 @@ RUN apt update && apt install -y --no-install-recommends \
         && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
-
+    
 # Get pip for Python3.
 RUN curl -fSsL -O https://bootstrap.pypa.io/get-pip.py && \
     python3 get-pip.py && \
     rm get-pip.py
-
+    
 # Install some useful and deep-learning-related packages for Python3.
 RUN pip3 --no-cache-dir install \
          h5py \
@@ -104,8 +108,7 @@ RUN cd / && \
     wget https://raw.githubusercontent.com/tensorflow/tensorflow/master/tensorflow/tools/docker/run_jupyter.sh && \
     chmod +x run_jupyter.sh
 
-# Set up Bazel.
-
+# Set up Bazel
 # Running bazel inside a `docker build` command causes trouble, cf:
 #   https://github.com/bazelbuild/bazel/issues/134
 # The easiest solution is to set up a bazelrc file forcing --batch.
@@ -156,9 +159,16 @@ RUN mkdir -p /usr/local/nvidia/lib64/ && \
     cp /usr/local/cuda-9.0/targets/x86_64-linux/lib/stubs/libcuda.so /usr/local/nvidia/lib64/libcuda.so.1 && \
     tensorflow/tools/ci_build/builds/configured GPU && \
     bazel build -c opt \
+                --copt=-msse4.1 \
+                --copt=-msse4.2 \
+                --copt=-mavx \
+                --copt=-mavx2 \
+                --copt=-mfma \
+                --copt=-O3 \
                 --config=cuda \
                 --cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0" \
-                --jobs=${NUM_CPUS_FOR_BUILD} tensorflow/tools/pip_package:build_pip_package && \
+                --jobs=${NUM_CPUS_FOR_BUILD} \
+                tensorflow/tools/pip_package:build_pip_package && \
     bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/pip && \
     pip3 --no-cache-dir install --upgrade /tmp/pip/tensorflow-*.whl && \
     pip3 --no-cache-dir install keras && \
@@ -173,7 +183,7 @@ RUN git clone https://github.com/opencv/opencv.git /root/opencv && \
     mkdir build && \
     cd build && \
     cmake -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_V4L=ON -D INSTALL_C_EXAMPLES=OFF -D INSTALL_PYTHON_EXAMPLES=OFF -D BUILD_EXAMPLES=OFF -D WITH_QT=ON -D WITH_OPENGL=ON -D ENABLE_FAST_MATH=1 -D CUDA_FAST_MATH=1 -D WITH_CUBLAS=1 .. && \
-    make -j${NUM_CPUS_FOR_BUILD}  && \
+    make -j"${NUM_CPUS_FOR_BUILD}" && \
     make install && \
     ldconfig && \
     rm -rf /root/opencv
