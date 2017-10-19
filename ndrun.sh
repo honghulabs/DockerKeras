@@ -1,16 +1,23 @@
 #!/bin/bash
-
-# This is a wrapper file that helps you to run your script within our container.
 #
-# Example of Usage (print Tensorflow's version within the container):
+# This is a wrapper file that helps you to run your script using our docker images.
+#
+# Example of Usage (print TensorFlow's version inside the running image):
 #   printf "import tensorflow \nprint('tensorflow version=',tensorflow.__version__)" > check_tf_version.py
-#   ndrun python3 check_tf_version.py 
+#   ndrun python3 check_tf_version.py
+# 
+# Options available:
+#   -t: tag of the image or type (framework's name) of the image (easier to remember). Possible values: 
+#       tf-cu9-dnn7-py3, tensorflow, cntk-cu8-dnn6-py3, cntk,
+#       mxnet-cu9-dnn7-py3, mxnet, theano-cu9-dnn7-py3, theano
+#   -n: number of GPUs to be used.
+#
 
-# By default, we will use single GPU and choose Tensorflow as our backend. 
+# By default, we will use single GPU and choose TensorFlow as our backend. 
 IMG_TAG='tf-cu9-dnn7-py3'
 NUM_GPUS=1
 
-# The value of $IMG_TAG and $NUM_GPUS can be changed through the input arguments, via the flag -t and -n.
+# The value of $IMG_TAG or $NUM_GPUS can be altered using the the options -t or -n.
 while getopts 'vt:n:' FLAG; do
   case "${FLAG}" in
     v) VERBOSE=true ;;
@@ -20,6 +27,14 @@ while getopts 'vt:n:' FLAG; do
   esac
 done
 shift $((OPTIND-1))
+
+# Make it possible to use "-t cntk" instead of "-t cntk-cu8-dnn6-py3".
+case "${IMG_TAG}" in
+  "tensorflow") IMG_TAG='tf-cu9-dnn7-py3' ;;
+        "cntk") IMG_TAG='cntk-cu8-dnn6-py3' ;;
+       "mxnet") IMG_TAG='mxnet-cu9-dnn7-py3' ;;
+      "theano") IMG_TAG='theano-cu9-dnn7-py3' ;;
+esac
 
 # After shifting away the optional arguments, intepreter such as Python/Python3 should now be the first argument.
 INTEPRETER=$1
