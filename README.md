@@ -1,5 +1,4 @@
-
-ckerbuildsKeras
+# DockerbuildsKeras
 [![Docker Pulls](https://img.shields.io/docker/pulls/honghu/keras.svg)](https://hub.docker.com/r/honghu/keras/) [![DockerStars](https://img.shields.io/docker/stars/honghu/keras.svg)](https://hub.docker.com/r/honghu/keras/) [![SponsoredByHonghuTech](https://img.shields.io/badge/sponsored%20by-Honghu%20Tech-red.svg)](http://www.honghutech.com/)
 
 Wouldn't it be amazing, if you can run any scripts easily, without having to worry about whether the necessary deep-learning frameworks, dependent packages and libraries are all installed and configured properly? 
@@ -208,7 +207,7 @@ within your home directory.
 Next, we will run *cifar10_multi_gpu_train.py*, which is located at *models/tutorials/image/cifar10/*. Let's first ask for help in order to find out what the acceptable input arguments are:
 
 ```bash
-ndrun python3 models/tutorials/image/cifar10/cifar10_multi_gpu_train.py --help
+./ndrun python3 models/tutorials/image/cifar10/cifar10_multi_gpu_train.py --help
 ```
 which returns the following output:
 

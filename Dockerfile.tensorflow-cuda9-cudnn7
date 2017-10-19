@@ -74,12 +74,12 @@ RUN apt update && apt install -y --no-install-recommends \
         && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
-    
+
 # Get pip for Python3.
 RUN curl -fSsL -O https://bootstrap.pypa.io/get-pip.py && \
     python3 get-pip.py && \
     rm get-pip.py
-    
+
 # Install some useful and deep-learning-related packages for Python3.
 RUN pip3 --no-cache-dir install \
          h5py \
