@@ -3,21 +3,22 @@
 # This is a wrapper file that helps you to run your script using our docker images.
 #
 # Example of Usage (print TensorFlow's version inside the running image):
-#   printf "import tensorflow \nprint('tensorflow version=',tensorflow.__version__)" > check_tf_version.py
+#   printf "import tensorflow \nprint('tf version=',tensorflow.__version__)" > check_tf_version.py
 #   ndrun python3 check_tf_version.py
 # 
 # Options available:
-#   -t: tag of the image or type (framework's name) of the image (easier to remember). Possible values: 
-#       tf-cu9-dnn7-py3, tensorflow, cntk-cu8-dnn6-py3, cntk,
-#       mxnet-cu9-dnn7-py3, mxnet, theano-cu9-dnn7-py3, theano
+#   -t: tag of the image (e.g. tf-cu9-dnn7-py3, cntk-cu8-dnn6-py3)
+#       or type of the image (e.g. tensorflow, cntk).
 #   -n: number of GPUs to be used.
+#   -v: verbose mode.
 #
 
-# By default, we will use single GPU and choose TensorFlow as our backend. 
+# By default, 1 GPU is to be used and the TensorFlow's docker image will be chosen. 
 IMG_TAG='tf-cu9-dnn7-py3'
 NUM_GPUS=1
 
-# The value of $IMG_TAG or $NUM_GPUS can be altered using the the options -t or -n.
+# 'tag of the selected image' and 'number of GPUs to be used'
+# can be given through the optional arguments -t and -n.
 while getopts 'vt:n:' FLAG; do
   case "${FLAG}" in
     v) VERBOSE=true ;;
@@ -28,7 +29,7 @@ while getopts 'vt:n:' FLAG; do
 done
 shift $((OPTIND-1))
 
-# Make it possible to use "-t cntk" instead of "-t cntk-cu8-dnn6-py3".
+# allowing the use of "-t cntk" rather than "-t cntk-cu8-dnn6-py3".
 case "${IMG_TAG}" in
   "tensorflow") IMG_TAG='tf-cu9-dnn7-py3' ;;
         "cntk") IMG_TAG='cntk-cu8-dnn6-py3' ;;
@@ -36,46 +37,123 @@ case "${IMG_TAG}" in
       "theano") IMG_TAG='theano-cu9-dnn7-py3' ;;
 esac
 
-# After shifting away the optional arguments, intepreter such as Python/Python3 should now be the first argument.
+# As the optional arguments are shifted away, intepreter such as
+# Python/Python3 should be the first argument.
 INTEPRETER=$1
-# Script to be executed should now be the second argument.
+
+CL_RED='\033[1;31m'   # color (red)
+CL_GREEN='\033[1;32m' # color (green)
+NC='\033[0m'          # no color
+# Check if the intepreter is given.
+if [ -z $INTEPRETER ];then
+  echo -e ${CL_RED} Error. You need to specify an intepreter in order to run the script.${NC}
+  exit 1
+fi
+# Script to be executed should be the second argument.
 EXE=$2
-# Extract flags for the script to be executed, if any.
+if [ -z $EXE ];then
+  echo -e ${CL_RED} Error. You should offer me the name of script you would like to execute.${NC}
+  exit 1
+fi
+
+# Extract optional arguments of the script.
 ARGS=$(echo $@ | cut -d' ' -f 3-)
 
 CONTAINER_VOL=/notebooks
 HOST_VOL=${PWD}
 # $CONTAINER_VOL is a volume on the container side.
 # $HOST_VOL is a volume on the host side.
-# Later, we will mount $HOST_VOL to $CONTAINER_VOL in order to share data between host and container.
+# Later, we will mount $HOST_VOL to $CONTAINER_VOL in order to share data
+# between both of these sides.
 
-
-CL='\033[1;32m'   # default color
-NC='\033[0m'      # no color
+# Output some additional info if verbose is on.
+CL='\033[1;32m'   # with color
+NC='\033[0m'      # with no color
 if [ "$VERBOSE" == "true" ] ;then
-  echo -e ${CL}intepreter= $INTEPRETER${NC}
-  echo
-  echo -e ${CL}name of the script to be executed= $EXE${NC}
-  echo
-  echo -e ${CL}args of the script to be executed= $ARGS${NC}
-  echo
-  echo -e ${CL}${HOST_VOL}' (on the side of host) will be mounted to '${CONTAINER_VOL}' (on the side of container).'${NC}
-  echo
+  echo -e ${CL_GREEN}Intepreter="\t" $INTEPRETER${NC}
+  echo -e ${CL_GREEN}Script to run="\t" $EXE${NC}
+  echo -e ${CL_GREEN}Script Args="\t" $ARGS${NC}
+  echo -e ${CL_GREEN}'"'${HOST_VOL}'"'' (on the side of Host) will be mounted to ''"'${CONTAINER_VOL}'"'' (on the side of Container).'${NC}
 fi
 
-# Multi-GPU topology: if 4 GPUs are used and you have DGX-1 or similar, due to its topology, it's faster to use GPU 0,1,3,4 instead of 0,1,2,3.
-if [ "${NUM_GPUS}" == "4" ];then
-  export NV_GPU=0,1,3,4
-else
-  export NV_GPU=$(seq -s , 0 $(($NUM_GPUS-1)))
+# If the user did not inform us which GPUs to be used, we will pick GPUs which are less busy.
+if [ -z $NV_GPU ] ;then
+
+  # Criterion for 'less busy': GPU utilization < 30 and has free memory > 2048MB.
+  # This criterion can be adjusted according to your needs.
+  threash_util=30
+  threash_free_mem=2048
+  
+  # Retrieve GPU info.
+  IFS=$''
+  gpu_info=$(nvidia-smi --format=csv \
+                        --query-gpu=utilization.gpu,memory.free \
+              | tail -n +2)
+  
+  # extract GPU utilization info.
+  gpu_utils=$(echo $gpu_info | cut -d"," -f 1 | cut -d" " -f 1)
+  
+  # extract GPU free-memory info.
+  gpu_free_mem=$(echo $gpu_info | cut -d"," -f 2 | cut -d" " -f 2)  
+  IFS=$'\n'
+  gpu_utils=(${gpu_utils})
+  gpu_free_mem=(${gpu_free_mem})
+  num_all_gpus=${#gpu_utils[*]}
+  IFS=$' '
+  if [ "$VERBOSE" == "true" ] ;then
+    echo -e ${CL}This system has ${num_all_gpus} GPUs.${NC}
+  fi
+  
+  # pick GPUs which are less busy.
+  for (( j=0; j< $((${num_all_gpus}/${NUM_GPUS})); j++ ))
+  do
+    gpu_ids=$(seq -s " " $((${NUM_GPUS}*j)) $(( ${NUM_GPUS}*(j+1)-1   )) )
+    count_not_use=0
+
+    for gpu_id in ${gpu_ids}
+    do
+      if [ "${gpu_utils[${gpu_id}]}" -lt "${threash_util}" ] && \
+         [ "${gpu_free_mem[${gpu_id}]}" -gt "${threash_free_mem}" ]; then
+        count_not_use=$((${count_not_use}+1))
+      fi
+    done
+    if [ "${count_not_use}" == "${NUM_GPUS}" ]; then
+      NV_GPU=${gpu_ids//" "/,}
+      break
+    fi
+  done
+  # The following lines check some more configurations for number of GPUs to be used =2.
+  if [ -z "${NV_GPU}" ] && [ "${NUM_GPUS}" == "2" ]; then
+    pairs=(0 2 0 3 1 2 1 3 4 6 4 7 5 6 5 7)
+    num_pairs=$((${#pairs[*]}/2))
+    for ((j=0;j<${num_pairs};j++))
+    do
+      id_gpu1=${pairs[((2*j))]}
+      id_gpu2=${pairs[((2*j+1))]}
+      if [ "${gpu_utils[ id_gpu1 ]}" -lt  "${threash_util}" ] && \
+         [ "${gpu_utils[ id_gpu2 ]}" -lt  "${threash_util}" ] && \
+         [ "${gpu_free_mem[ id_gpu1 ]}" -gt "${threash_free_mem}" ] && \
+         [ "${gpu_free_mem[ id_gpu2 ]}" -gt "${threash_free_mem}" ] ;then
+        NV_GPU=${id_gpu1},${id_gpu2}
+        break
+      fi
+    done
+  fi
 fi
 
-# Command to initialize a temporary docker container
-# in order to run the script.
+export NV_GPU
 
-# In order to use CNTK containers, we'll have to
+if [ -z ${NV_GPU} ] ;then
+  echo -e ${CL_RED} Error. No enough GPUs available!${NC}
+  exit 1
+elif [ "${VERBOSE}" == "true" ] ;then
+  echo -e ${CL_GREEN}NV_GPU=${NV_GPU}${NC}
+fi
+
+# Run the script.
+# Notice that, in order to use CNTK containers, we'll have to
 # switch on the CNTK's virtual environment.
-if [ "${IMG_TAG}" == "cntk-cu8-dnn6-py3" ] ;then
+if [[ "${IMG_TAG}" =~ ^cntk.* ]] ;then
   SRC_CNTK="source /cntk/activate-cntk"
 
   nvidia-docker run \
