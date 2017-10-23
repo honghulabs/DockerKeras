@@ -1,10 +1,24 @@
+# Copyright 2017 Chi-Hung Weng
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# 
 #!/bin/bash
 #
-# This is a wrapper file that helps you to run your script using our docker images.
+# This is a wrapper file that helps you to run your script using the docker images prepared by us.
 #
-# Example of Usage (print TensorFlow's version inside the running image):
-#   printf "import tensorflow \nprint('tf version=',tensorflow.__version__)" > check_tf_version.py
-#   ndrun python3 check_tf_version.py
+# Example of Usage (print CNTK's version inside the running image):
+#   printf "import cntk \nprint('cntk version=',cntk.__version__)" > check_cntk_version.py
+#   ndrun -v -t cntk python3 check_cntk_version.py
 # 
 # Options available:
 #   -t: tag of the image (e.g. tf-cu9-dnn7-py3, cntk-cu8-dnn6-py3)
@@ -14,11 +28,10 @@
 #
 
 # By default, 1 GPU is to be used and the TensorFlow's docker image will be chosen. 
-IMG_TAG='tf-cu9-dnn7-py3'
-NUM_GPUS=1
+NUM_GPUS=1                    # number of GPUs to be used
+IMG_TAG='tf-cu9-dnn7-py3'     # tag of the image to be running
 
-# 'tag of the selected image' and 'number of GPUs to be used'
-# can be given through the optional arguments -t and -n.
+# The above variables can be changed via the optional arguments -t and -n.
 while getopts 'vt:n:' FLAG; do
   case "${FLAG}" in
     v) VERBOSE=true ;;
@@ -29,7 +42,7 @@ while getopts 'vt:n:' FLAG; do
 done
 shift $((OPTIND-1))
 
-# allowing the use of "-t cntk" rather than "-t cntk-cu8-dnn6-py3".
+# Allowing the use of "-t cntk" rather than "-t cntk-cu8-dnn6-py3".
 case "${IMG_TAG}" in
   "tensorflow") IMG_TAG='tf-cu9-dnn7-py3' ;;
         "cntk") IMG_TAG='cntk-cu8-dnn6-py3' ;;
@@ -44,11 +57,13 @@ INTEPRETER=$1
 CL_RED='\033[1;31m'   # color (red)
 CL_GREEN='\033[1;32m' # color (green)
 NC='\033[0m'          # no color
+
 # Check if the intepreter is given.
 if [ -z $INTEPRETER ];then
   echo -e ${CL_RED} Error. You need to specify an intepreter in order to run the script.${NC}
   exit 1
 fi
+
 # Script to be executed should be the second argument.
 EXE=$2
 if [ -z $EXE ];then
@@ -122,6 +137,7 @@ if [ -z $NV_GPU ] ;then
       break
     fi
   done
+
   # The following lines check some more configurations for number of GPUs to be used =2.
   if [ -z "${NV_GPU}" ] && [ "${NUM_GPUS}" == "2" ]; then
     pairs=(0 2 0 3 1 2 1 3 4 6 4 7 5 6 5 7)
@@ -151,22 +167,23 @@ elif [ "${VERBOSE}" == "true" ] ;then
 fi
 
 # Run the script.
-# Notice that, in order to use CNTK containers, we'll have to
+# Notice that, in order to use the CNTK's docker image, we'll have to
 # switch on the CNTK's virtual environment.
 if [[ "${IMG_TAG}" =~ ^cntk.* ]] ;then
-  SRC_CNTK="source /cntk/activate-cntk"
 
-  nvidia-docker run \
-  -it \
-  -v ${HOST_VOL}:${CONTAINER_VOL} \
-  --rm \
-  honghu/keras:${IMG_TAG} \
-  "${SRC_CNTK} && ${INTEPRETER} ${CONTAINER_VOL}/${EXE} $ARGS"
+  SRC_CNTK="source /cntk/activate-cntk"
+  nvidia-docker run -it \
+                    -v ${HOST_VOL}:${CONTAINER_VOL} \
+                    --rm \
+                    honghu/keras:${IMG_TAG} \
+                    "${SRC_CNTK} && ${INTEPRETER} ${CONTAINER_VOL}/${EXE} $ARGS"
+
 else
-  nvidia-docker run \
-  -it \
-  -v ${HOST_VOL}:${CONTAINER_VOL} \
-  --rm \
-  honghu/keras:${IMG_TAG} \
-  ${INTEPRETER} ${CONTAINER_VOL}/${EXE} $ARGS
+
+  nvidia-docker run -it \
+                    -v ${HOST_VOL}:${CONTAINER_VOL} \
+                    --rm \
+                    honghu/keras:${IMG_TAG} \
+                    ${INTEPRETER} ${CONTAINER_VOL}/${EXE} $ARGS
+
 fi
