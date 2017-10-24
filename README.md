@@ -412,19 +412,19 @@ However, I would suggest you avoid passing *NV_GPU* to *ndrun*, unless you are p
 
 ### Example: Learn MXNET and its gluon interface.
 [MXNET + its gluon interface](http://gluon.mxnet.io/) has nice tutorials written in the format of *Jupyter Notebook*. Let's fetch them into, say, our home directory:
-```
+```bash
 cd $HOME
 git clone https://github.com/zackchase/mxnet-the-straight-dope.git
 ```
 Now, you'll see a folder called ```mxnet-the-straight-dope``` within your home directory. Let's switch to this directory and initializes a *Jupyter Notebook server* from there:
-```
+```bash
 cd $HOME/mxnet-the-straight-dope
 ndrun -n 1 -t mxnet -p 8889
 ```
 The above lines activate an environment that has MXNET installed. It also use one GPU via ```-n 1``` and open a port at *8889* via ```-p 8889```.
 
 Its output is like this:
-```
+```bash
  An intepreter such as python/python3, is not given.
  You did not provide me the script you wish to execute.
 Starting Jupyter Notebook...
