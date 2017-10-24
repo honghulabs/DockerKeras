@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# 
+
 #!/bin/bash
 #
 # This is a wrapper file that helps you to run your script using the docker images prepared by us.
@@ -29,46 +29,62 @@
 
 # By default, 1 GPU is to be used and the TensorFlow's docker image will be chosen. 
 NUM_GPUS=1                    # number of GPUs to be used
-IMG_TAG='tf-cu9-dnn7-py3'     # tag of the image to be running
+IMG_TYPE='tensorflow'         # type of the image to be running
 
-# The above variables can be changed via the optional arguments -t and -n.
-while getopts 'vt:n:' FLAG; do
+# By default, port 8888 will be opened as Jupyter Notebook starts.
+# Remark: Jupyter Notebook starts only if there's no script given.
+PORT=8888
+
+# The above variables can be changed via the optional arguments -t, -n and -p.
+while getopts 'vt:n:p:' FLAG; do
   case "${FLAG}" in
     v) VERBOSE=true ;;
-    t) IMG_TAG="${OPTARG}" ;;
+    t) IMG_TYPE="${OPTARG}" ;;
     n) NUM_GPUS="${OPTARG}" ;;
+    p) PORT="${OPTARG}" ;;
     *) error "Unexpected option ${FLAG}" ;;
   esac
 done
 shift $((OPTIND-1))
 
-# Allowing the use of "-t cntk" rather than "-t cntk-cu8-dnn6-py3".
-case "${IMG_TAG}" in
-  "tensorflow") IMG_TAG='tf-cu9-dnn7-py3' ;;
+# Decide which tag of honghu/keras to be used later.
+case "${IMG_TYPE}" in
+  "tensorflow") IMG_TAG='tf-cu9-dnn7-py3-avx2' ;;
         "cntk") IMG_TAG='cntk-cu8-dnn6-py3' ;;
-       "mxnet") IMG_TAG='mxnet-cu9-dnn7-py3' ;;
+       "mxnet") IMG_TAG='mx-cu9-dnn7-py3' ;;
       "theano") IMG_TAG='theano-cu9-dnn7-py3' ;;
+             *) IMG_TAG= ${IMG_TYPE} ;;
 esac
 
+# Define colors for verbose/error messages
+CL_RED='\033[1;31m'   # color (light red)
+CL_GREEN='\033[1;32m' # color (light green)
+CL_BLUE='\033[1;34m'  # color (light blue)
+NC='\033[0m'          # no color
+
+# This script supports only NUM_GPUS=1, 2, 4 or 8.
+if [ "${NUM_GPUS}" == "1" ] || \
+   [ "${NUM_GPUS}" == "2" ] || \
+   [ "${NUM_GPUS}" == "4" ] || \
+   [ "${NUM_GPUS}" == "8" ] ;then
+  :
+else
+  echo -e ${CL_RED} Error. Currently, this script supports only number of GPUs = 1, 2, 4 or 8.${NC}
+  exit 1
+fi
 # As the optional arguments are shifted away, intepreter such as
 # Python/Python3 should be the first argument.
 INTEPRETER=$1
 
-CL_RED='\033[1;31m'   # color (red)
-CL_GREEN='\033[1;32m' # color (green)
-NC='\033[0m'          # no color
-
 # Check if the intepreter is given.
 if [ -z $INTEPRETER ];then
-  echo -e ${CL_RED} Error. You need to specify an intepreter in order to run the script.${NC}
-  exit 1
+  echo -e ${CL_GREEN} An intepreter such as python/python3, is not given.${NC}
 fi
 
 # Script to be executed should be the second argument.
 EXE=$2
 if [ -z $EXE ];then
-  echo -e ${CL_RED} Error. You should offer me the name of script you would like to execute.${NC}
-  exit 1
+  echo -e ${CL_GREEN} You did not provide me the script you wish to execute.${NC}
 fi
 
 # Extract optional arguments of the script.
@@ -105,10 +121,10 @@ if [ -z $NV_GPU ] ;then
                         --query-gpu=utilization.gpu,memory.free \
               | tail -n +2)
   
-  # extract GPU utilization info.
+  # Extract GPU utilization info.
   gpu_utils=$(echo $gpu_info | cut -d"," -f 1 | cut -d" " -f 1)
   
-  # extract GPU free-memory info.
+  # Extract GPU free-memory info.
   gpu_free_mem=$(echo $gpu_info | cut -d"," -f 2 | cut -d" " -f 2)  
   IFS=$'\n'
   gpu_utils=(${gpu_utils})
@@ -119,7 +135,7 @@ if [ -z $NV_GPU ] ;then
     echo -e ${CL}This system has ${num_all_gpus} GPUs.${NC}
   fi
   
-  # pick GPUs which are less busy.
+  # Pick GPUs which are less busy.
   for (( j=0; j< $((${num_all_gpus}/${NUM_GPUS})); j++ ))
   do
     gpu_ids=$(seq -s " " $((${NUM_GPUS}*j)) $(( ${NUM_GPUS}*(j+1)-1   )) )
@@ -155,6 +171,7 @@ if [ -z $NV_GPU ] ;then
       fi
     done
   fi
+
 fi
 
 export NV_GPU
@@ -166,10 +183,51 @@ elif [ "${VERBOSE}" == "true" ] ;then
   echo -e ${CL_GREEN}NV_GPU=${NV_GPU}${NC}
 fi
 
-# Run the script.
-# Notice that, in order to use the CNTK's docker image, we'll have to
-# switch on the CNTK's virtual environment.
-if [[ "${IMG_TAG}" =~ ^cntk.* ]] ;then
+# Start the Jupyter Notebook if no script is passed for running.
+if [ -z ${INTEPRETER} ] && [ -z ${EXE} ] ;then
+  echo -e ${CL_GREEN}Starting Jupyter Notebook...${NC}
+  echo -e NV_GPU="${NV_GPU}"${NC}
+  container_id=$(nvidia-docker run -it \
+                    -v ${HOST_VOL}:${CONTAINER_VOL} \
+                    -p ${PORT}:8888 \
+                    -d \
+                    --rm \
+                    honghu/keras:${IMG_TAG} )
+  if [ "$?" == "0" ] ;then
+    container_id=$(echo ${container_id} | head -n 1 | cut -c1-12)
+
+    # Sleep for a while. This is necessary since it takes time for
+    # Jupyter Notebook to start.
+    if [[ "${IMG_TAG}" =~ ^cntk.* ]] ;then
+      sleep 2.5
+    else
+      sleep 1.5
+    fi
+    # After Jupyter Notebook starts, we are able to get its token.
+    notebook_token=$(docker logs "${container_id}" | tail -n 1 | cut -d"=" -f 2)
+
+    if [ -z ${my_ip} ]; then
+      my_ip="localhost"
+    fi
+    # Tell the user how to connect to the Jupyter Notebook via the given token.
+    echo -e ${NC} '*' To use Jupyter Notebook, open a browser and connect to the following address:${NC}
+    echo -e ${CL_BLUE} "     http://${my_ip}:${PORT}/?token=${notebook_token}"${NC}
+    if [ "${my_ip}" == "localhost" ] ;then
+      echo -e ${NC} ' ' Replace '"'localhost'"' to the IP address \
+                    that is visible to other computers, if you are not coming from localhost.${NC}
+    fi
+    echo -e ${NC} '*' To stop and remove this docker daemon, type:${NC}
+    echo -e ${CL_BLUE} "     docker stop ${container_id}"${NC}
+  else
+    echo -e ${CL_RED} An error occured. It"'"s likely that the port you have specified is already in use.${NC}
+    echo -e ${CL_RED} Use the option -p to use another port.${NC}
+    exit 1
+  fi
+
+# Or, if a script is passed for running, run it.
+# Notice that, in order to use CNTK's docker image, we'll have to
+# switch on CNTK's virtual environment.
+elif [[ "${IMG_TAG}" =~ ^cntk.* ]] ;then
 
   SRC_CNTK="source /cntk/activate-cntk"
   nvidia-docker run -it \
@@ -177,13 +235,10 @@ if [[ "${IMG_TAG}" =~ ^cntk.* ]] ;then
                     --rm \
                     honghu/keras:${IMG_TAG} \
                     "${SRC_CNTK} && ${INTEPRETER} ${CONTAINER_VOL}/${EXE} $ARGS"
-
 else
-
   nvidia-docker run -it \
                     -v ${HOST_VOL}:${CONTAINER_VOL} \
                     --rm \
                     honghu/keras:${IMG_TAG} \
                     ${INTEPRETER} ${CONTAINER_VOL}/${EXE} $ARGS
-
 fi
