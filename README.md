@@ -30,7 +30,7 @@ Geben Sie mir bitte einen Stern, wenn du findest, dass dieses Projekt sich lohnt
 
 See below for further information about what packages are included in each of the images we provide and how to use. Also, if you find any important package which is not included, do not hesitate to contact me!
 
-## Table of the Content
+## Table of Contents
 
 * [Keras using TensorFlow Backend](#keras-using-tensorflow-backend)
 * [Keras using CNTK Backend](#keras-using-cntk-backend)
