@@ -77,7 +77,7 @@ which includes
 Remark
 * All the above-mentioned packages are built for Python```3```.
 * This image is based on the [official CNTK image](https://hub.docker.com/r/microsoft/cntk/), where CNTK is compiled with CUDA```8``` and cuDNN```6```. 
-* According to Microsoft, CNTK backend is [still in beta](https://docs.microsoft.com/en-us/cognitive-toolkit/using-cntk-with-keras). Still, a [benchmark](http://minimaxir.com/2017/06/keras-cntk/) made by Max Woolf shows that, for RNN models such as *LSTM*, switching the backend from TensorFlow to CNTK may increase the speed of training significantly.
+* According to Microsoft, CNTK backend of Keras is [still in beta](https://docs.microsoft.com/en-us/cognitive-toolkit/using-cntk-with-keras). Still, a [benchmark](http://minimaxir.com/2017/06/keras-cntk/) made by Max Woolf shows that, for RNN models such as *LSTM*, switching the backend from TensorFlow to CNTK may increase the speed of training significantly.
 
 [move to the top](#table-of-contents)
 ## Keras using MXNET Backend
