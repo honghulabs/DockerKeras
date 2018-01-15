@@ -378,7 +378,7 @@ We can check the status of GPUs while this script is running, via ```nvidia-smi`
 which indicates that only *GPU0* is in use. (Although *GPU1*'s memory is almost fully occupied, it's *GPU-Util* is *0\%*, meaning that it's not used at all.) This is a mistake that should be avoided otherwise you'll waste resources of your GPU.
 
 [move to the top](#table-of-contents)
-### Set *NV_GPU* if you know which GPUs you'd like to use
+### Set *NV_GPU* if you know which GPUs you'd like to use.
 If you'd like to use, say, *GPU 6* and *GPU7* to run your script, you can pass ```NV_GPU=6,7``` to *ndrun*, as the following example:
 ```bash
 # Switch to your home directory.
