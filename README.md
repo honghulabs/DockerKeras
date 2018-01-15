@@ -306,7 +306,7 @@ Remark
 *  As you activate a docker image using *ndrun*, your current working directory, i.e.```$HOME```,  will be  mounted to ```/notebooks```, a default working directory inside the docker container. Consequently, you should set ```--data_dir=/notebooks```, since *CIFAR10* dataset is only visible at ```/notebooks``` on the docker container's side.
 * *ndrun* accepts the option ```-n``` (number of GPUs). By default it is ```-n 1```. If you'd like to use 2 GPUs, set ```-n 2``` so that there will be two GPUs visible to the activated docker image.
 * You should get an output similar to the following (2x NVIDIA Tesla V100):
-    ```bash
+    ```
     Filling queue with 20000 CIFAR images before starting to train. This will take a few minutes.
     2017-10-17 04:36:51.811596: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1030] Found device 0 with properties: 
     name: Tesla V100-SXM2-16GB major: 7 minor: 0 memoryClockRate(GHz): 1.53
