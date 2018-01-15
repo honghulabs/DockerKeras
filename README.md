@@ -422,7 +422,7 @@ ndrun -n 1 -t mxnet -p 8889
 The above lines activate an environment that has MXNET installed. It also use one GPU via ```-n 1``` and open a port at *8889* via ```-p 8889```.
 
 Its output is like this:
-```bash
+```
  An intepreter such as python/python3, is not given.
  You did not provide me the script you wish to execute.
 Starting Jupyter Notebook...
