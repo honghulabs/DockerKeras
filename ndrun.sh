@@ -50,9 +50,9 @@ shift $((OPTIND-1))
 # Decide which tag of honghu/keras to be used later.
 case "${IMG_TYPE}" in
   "tensorflow") IMG_TAG='tf-cu9-dnn7-py3-avx2-18.01' ;;
-        "cntk") IMG_TAG='cntk-cu8-dnn6-py3' ;;
-       "mxnet") IMG_TAG='mx-cu9-dnn7-py3' ;;
-      "theano") IMG_TAG='theano-cu9-dnn7-py3' ;;
+        "cntk") IMG_TAG='cntk-cu8-dnn6-py3-18.01' ;;
+       "mxnet") IMG_TAG='mx-cu9-dnn7-py3-18.01' ;;
+      "theano") IMG_TAG='theano-cu9-dnn7-py3-18.01' ;;
              *) IMG_TAG= ${IMG_TYPE} ;;
 esac
 
@@ -211,13 +211,13 @@ if [ -z ${INTEPRETER} ] && [ -z ${EXE} ] ;then
     fi
     # Tell the user how to connect to the Jupyter Notebook via the given token.
     echo -e ${NC} '*' To use Jupyter Notebook, open a browser and connect to the following address:${NC}
-    echo -e ${CL_BLUE} "     http://${my_ip}:${PORT}/?token=${notebook_token}"${NC}
+    echo -e ${CL_BLUE} "  http://${my_ip}:${PORT}/?token=${notebook_token}"${NC}
     if [ "${my_ip}" == "localhost" ] ;then
       echo -e ${NC} ' ' Replace '"'localhost'"' to the IP address \
                     that is visible to other computers, if you are not coming from localhost.${NC}
     fi
     echo -e ${NC} '*' To stop and remove this docker daemon, type:${NC}
-    echo -e ${CL_BLUE} "     docker stop ${container_id}"${NC}
+    echo -e ${CL_BLUE} "  docker stop ${container_id}"${NC}
   else
     echo -e ${CL_RED} An error occured. It"'"s likely that the port you have specified is already in use.${NC}
     echo -e ${CL_RED} Use the option -p to use another port.${NC}
@@ -234,7 +234,7 @@ elif [[ "${IMG_TAG}" =~ ^cntk.* ]] ;then
                     -v ${HOST_VOL}:${CONTAINER_VOL} \
                     --rm \
                     honghu/keras:${IMG_TAG} \
-                    "${SRC_CNTK} && ${INTEPRETER} ${CONTAINER_VOL}/${EXE} $ARGS"
+                    -c "${SRC_CNTK} && ${INTEPRETER} ${CONTAINER_VOL}/${EXE} $ARGS"
 else
   nvidia-docker run -it \
                     -v ${HOST_VOL}:${CONTAINER_VOL} \
