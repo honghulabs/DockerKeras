@@ -204,7 +204,7 @@ This script can be executed simply through:
 ndrun python3 mnist_with_summaries.py
 ```
 and you should see some outputs similar to the following:
-```bash
+```
 Successfully downloaded train-images-idx3-ubyte.gz 9912422 bytes.
 Extracting /tmp/tensorflow/mnist/input_data/train-images-idx3-ubyte.gz
 Successfully downloaded train-labels-idx1-ubyte.gz 28881 bytes.
@@ -262,7 +262,7 @@ ndrun python3 models/tutorials/image/cifar10/cifar10_multi_gpu_train.py --help
 ```
 which returns the following output:
 
-```bash
+```
 usage: cifar10_multi_gpu_train.py [-h] [--batch_size BATCH_SIZE]
                                   [--data_dir DATA_DIR]
                                   [--use_fp16 [USE_FP16]] [--nouse_fp16]
