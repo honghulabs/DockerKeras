@@ -1,0 +1,5 @@
+{
+   "image_data_format": "channels_first",
+   "float": "float32",
+   "backend": "mxnet",
+   "epsilon": 1e-07 }
