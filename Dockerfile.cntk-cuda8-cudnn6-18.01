@@ -28,7 +28,7 @@ RUN /bin/bash -c "${source_cntk} && conda update -y scipy \
 
 # Tell Keras to use CNTK as its backend.
 RUN mkdir /root/.keras && \
-    wget -O /root/.keras/keras.json https://raw.githubusercontent.com/chi-hung/DockerbuildsKeras/master/keras.json
+    wget -O /root/.keras/keras.json https://raw.githubusercontent.com/chi-hung/DockerbuildsKeras/master/keras-cntk.json
 
 # Set up our notebook config.
 RUN mkdir /root/.jupyter && \
