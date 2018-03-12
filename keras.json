@@ -1,5 +1,0 @@
-{
-   "image_data_format": "channels_last",
-   "float": "float32",
-   "backend": "cntk",
-   "epsilon": 1e-07 }
