@@ -28,6 +28,8 @@ RUN apt update && apt install -y --no-install-recommends \
         libsm6 \
         libxrender-dev \
         libxext-dev \
+        graphviz \
+        vim \
         && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
@@ -51,7 +53,8 @@ RUN pip3 --no-cache-dir install \
          scikit-image \
          autograd \
          mlxtend \
-         graphviz \
+         pydot-ng \
+         imgaug \
          cython \
          opencv-contrib-python
 
@@ -82,17 +85,17 @@ WORKDIR /opt/theano
 RUN python3 setup.py build && \
     python3 setup.py install && \
     cd .. && \
-    pip3 install Theano
+    pip3 --no-cache-dir install Theano
 
 ENV THEANO_FLAGS 'device=cuda,floatX=float32'
 # FP32 is used by default. You can always reset this flag.
 
 # Install Keras.
-RUN pip3 install keras
+RUN pip3 --no-cache-dir install keras
 
 # Tell Keras to use Theano as its backend.
 RUN mkdir /root/.keras && \
-    wget -O /root/.keras/keras.json https://raw.githubusercontent.com/chi-hung/DockerbuildsKeras/master/keras.json && \
+    wget -O /root/.keras/keras.json https://raw.githubusercontent.com/chi-hung/DockerbuildsKeras/master/keras-cntk.json && \
     sed -i -e 's/cntk/theano/g' /root/.keras/keras.json
 
 # Set up our notebook config.
@@ -112,5 +115,11 @@ RUN mkdir /notebooks && \
     wget -O /notebooks/MNISTDemoKeras.ipynb https://raw.githubusercontent.com/chi-hung/PythonTutorial/master/code_examples/KerasMNISTDemo.ipynb
 WORKDIR /notebooks
 
+# Add the "ipyrun" command. It runs the notebook & stores the obtained results into a HTML file.
+RUN printf '#!/bin/bash\njupyter nbconvert --ExecutePreprocessor.timeout=None \
+                                           --allow-errors \
+                                           --to html \
+                                           --execute $1' > /sbin/ipyrun && \
+    chmod +x /sbin/ipyrun
+
 CMD ["/run_jupyter.sh", "--allow-root"]
-#RUN ["/bin/bash"]

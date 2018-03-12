@@ -49,10 +49,10 @@ shift $((OPTIND-1))
 
 # Decide which tag of honghu/keras to be used later.
 case "${IMG_TYPE}" in
-  "tensorflow") IMG_TAG='tf-cu9-dnn7-py3-avx2-18.01' ;;
-        "cntk") IMG_TAG='cntk-cu8-dnn6-py3-18.01' ;;
-       "mxnet") IMG_TAG='mx-cu9-dnn7-py3-18.01' ;;
-      "theano") IMG_TAG='theano-cu9-dnn7-py3-18.01' ;;
+  "tensorflow") IMG_TAG='tf-cu9-dnn7-py3-avx2-18.03' ;;
+        "cntk") IMG_TAG='cntk-cu9-dnn7-py3-18.03' ;;
+       "mxnet") IMG_TAG='mx-cu9-dnn7-py3-18.03' ;;
+      "theano") IMG_TAG='theano-cu9-dnn7-py3-18.03' ;;
              *) IMG_TAG= ${IMG_TYPE} ;;
 esac
 

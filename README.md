@@ -1,60 +1,48 @@
-# Dockerbuilds-Keras
-[![GithubStars](https://img.shields.io/github/stars/chi-hung/DockerbuildsKeras.svg?style=social&label=Stars)](https://github.com/chi-hung/DockerbuildsKeras/) [![Docker Pulls](https://img.shields.io/docker/pulls/honghu/keras.svg)](https://hub.docker.com/r/honghu/keras/) [![SponsoredByHonghuTech](https://img.shields.io/badge/sponsored%20by-Honghu%20Tech-red.svg)](http://www.honghutech.com/)
+# DockerKeras
+[![GithubStars](https://img.shields.io/github/stars/chi-hung/DockerbuildsKeras.svg?style=social&label=Stars)](https://github.com/chi-hung/DockerbuildsKeras/) [![Docker Pulls](https://img.shields.io/docker/pulls/honghu/keras.svg)](https://hub.docker.com/r/honghu/keras/) [![CreatedByHonghuTech](https://img.shields.io/badge/created%20by-HonghuTech%20(NVIDIA%27s%20preffered%20Partner)-green.svg)](http://www.honghutech.com/)
 
-Tired of setting-up deep learning environments? Having trouble again? Now, with [NVIDIA-Docker](https://github.com/NVIDIA/nvidia-docker) and docker images maintained by us, error messages such as ***installation failed...*** or ***an error occurred during installation...*** won't be your nightmare anymore.
-
-We prepare, configure and maintain docker images of different deep-learning environments for you. From now on, all you have to do is type:
-```
-# run below if your script requires TensorFlow or TensorFlow+Keras.
-ndrun -t tensorflow python3 my_script_using_tensorflow_and_keras.py
-
-# or run below if your script requires CNTK or CNTK+Keras.
-ndrun -t cntk python3 my_script_using_cntk_and_keras.py
-```
-which activates a suitable docker image that can run your Python script successfully.
+Having trouble setting-up *deep learning* environments? We do this for you! From now on, you shall say goodbye to the error messages such as "**...build failed**" or "**an error occurred during installation**" !
 
 Currently, I maintain the following docker images:
 
-1. *Keras using Tensorflow Backened* 
+1. *Keras using TensorFlow Backened* 
 2. *Keras using CNTK Backend*
 3. *Keras using MXNET Backend*
 4. *Keras using Theano Backend*
 
-Apparantly, all of which support my beloved Keras. You can retrieve these images easily through [Dockerhub](https://hub.docker.com/r/honghu/keras/).
-
-Give me a star if you find this project helpful.
-亲，如觉不错便给颗星。
-Geben Sie mir bitte einen Stern, wenn du findest, dass dieses Projekt sich lohnt!
+Apparantly, all of which support my beloved Keras. 
 
 See below for what packages are included inside the images we provide and how to use these images. Also, if you find any important package which is not included, do not hesitate to contact me!
 
 ## Table of Contents
-
-* [Keras using TensorFlow Backend](#keras-using-tensorflow-backend)
-* [Keras using CNTK Backend](#keras-using-cntk-backend)
-* [Keras using MXNET Backend](#keras-using-mxnet-backend)
-* [Keras using Theano Backend](#keras-using-theano-backend)
-* [Before Getting Started](#before-getting-started)
-* [Getting Started with the Command Line](#getting-started-with-the-command-line)
-    * [Example: check the current framework’s version](#example-check-the-current-framework’s-version)
-    * [Example: classify handwritten-digits with TensorFlow](#example-classify-handwritten-digits-with-tensorflow)
-    * [Example: train a multi-GPU model with TensorFlow](#example-train-a-multi-gpu-model-with-tensorflow)
-* [Subtle Issues When Using the Command Line](#subtle-issues-when-using-the-command-line)
-    * [Avoid giving your script extra GPUs](#avoid-giving-your-script-extra-gpus)
-    * [Use NV_GPU if you know which GPUs you’d like to use](#use-nv-gpu-if-you-know-which-gpus-you’d-like-to-use)
-* [Getting Started with Jupyter Notebook](#getting-started-with-jupyter-notebook)
-    * [Example: Learn MXNET and its gluon interface](#example-learn-mxnet-and-its-gluon-interface)
+* [Before Getting Started](#Before-Getting-Started)
+* [Keras using TensorFlow Backend](#Keras-using-TensorFlow-Backend)
+* [Keras using CNTK Backend](#Keras-using-CNTK-Backend)
+* [Keras using MXNET Backend](#Keras-using-MXNET-Backend)
+* [Keras using Theano Backend](#Keras-using-Theano-Backend)
+* [ndrun - A Script that Activates a Deep Learning Environment](#ndrun---A-Script-that-Activates-a-Deep-Learning-Environment)
+* [Getting Started with the Command Line](#Getting-Started-with-the-Command-Line)
+    * [Example: Check a Framework’s Version](#Example-Check-a-Framework’s-Version)
+    * [Example: Classify Handwritten-Digits with TensorFlow](#Example-Classify-Handwritten-Digits-with-TensorFlow)
+    * [Example: Train a Multi-GPU Model using TensorFlow](#Example-Train-a-Multi-GPU-Model-using-TensorFlow)
+* [Subtle Issues When Using the Command Line](#Subtle-Issues-When-Using-the-Command-Line)
+    * [Avoid Giving Your Script Extra GPUs](#Avoid-Giving-Your-Script-Extra-GPUs)
+    * [Set `NV_GPU` If You Know Which GPUs You’d Like to Use](#Set-NV_GPU-If-You-Know-Which-GPUs-You’d-Like-to-Use)
+* [Getting Started with Jupyter Notebook](#Getting-Started-with-Jupyter-Notebook)
+    * [Example: Learn MXNET Gluon](#Example-Learn-MXNET-Gluon)
 
 ---
+## Before Getting Started
+Please install NVIDIA-Docker (as well as Docker and NVIDIA Driver) before you proceed. See [here](https://github.com/NVIDIA/nvidia-docker) for further information.
 ## Keras using TensorFlow Backend
 This environment is retrievable by issuing the following command
 ```bash
-docker pull honghu/keras:tf-cu9-dnn7-py3-avx2-18.01
+docker pull honghu/keras:tf-cu9-dnn7-py3-avx2-18.03
 ```
 which includes 
-1. *Keras* ```v2.1.2```
-2. *TensorFlow* ```v1.4.1``` &nbsp;&nbsp;![](https://img.shields.io/badge/build-from%20source-brightgreen.svg)
-3. *OpenCV* ```v3.4.0``` &nbsp;&nbsp;![](https://img.shields.io/badge/build-from%20source-brightgreen.svg)
+1. *Keras* ```v2.1.5```
+2. *TensorFlow* ```v1.6.0``` &nbsp;&nbsp;![](https://img.shields.io/badge/built-from%20source-brightgreen.svg)
+3. *OpenCV* ```v3.4.1``` &nbsp;&nbsp;![](https://img.shields.io/badge/built-from%20source-brightgreen.svg)
 4. common packages for data mining, such as *Pandas*, *Scikit-Learn*, *Matplotlib*, *Seaborn* and *Bokeh*.
 
 Remark
@@ -62,59 +50,59 @@ Remark
 * TensorFlow and OpenCV are built from source. They are compiled with CUDA```9``` and cuDNN```7```.
 * This image supports CPU instructions such as SSE4.2, AVX2 and FMA.
 
-[move to the top](#table-of-contents)
+[move to the top](#Table-of-Contents)
 ## Keras using CNTK Backend
 This environment is retrievable by issuing the following command
 ```bash
-docker pull honghu/keras:cntk-cu8-dnn6-py3-18.01
+docker pull honghu/keras:cntk-cu9-dnn7-py3-18.03
 ```
 which includes
-1. *Keras* ```v2.1.2```
-2. *CNTK* ```v2.2```
-3. *OpenCV* ```v3.2.0```
+1. *Keras* ```v2.1.5```
+2. *CNTK* ```v2.4```
+3. *OpenCV* ```v3.1.0```
 4. common packages for data mining, such as *Pandas*, *Scikit-Learn*, *Matplotlib*, *Seaborn* and *Bokeh*.
 
 Remark
 * All the above-mentioned packages are built for Python```3```.
-* This image is based on the [official CNTK image](https://hub.docker.com/r/microsoft/cntk/), where CNTK is compiled with CUDA```8``` and cuDNN```6```. 
-* According to Microsoft, CNTK backend of Keras is [still in beta](https://docs.microsoft.com/en-us/cognitive-toolkit/using-cntk-with-keras). Still, a [benchmark](http://minimaxir.com/2017/06/keras-cntk/) made by Max Woolf shows that, for RNN models such as *LSTM*, switching the backend from TensorFlow to CNTK may increase the speed of training significantly.
+* This image is based on the [official CNTK image](https://hub.docker.com/r/microsoft/cntk/), where CNTK was compiled with CUDA```9``` and cuDNN```7```. 
+* According to Microsoft, CNTK backend of Keras is [still in beta](https://docs.microsoft.com/en-us/cognitive-toolkit/using-cntk-with-keras). But, never mind! For some models such as *LSTM*, switching the backend from TensorFlow to CNTK may increase the speed of training significantly (reference: a [benchmark](http://minimaxir.com/2017/06/keras-cntk/) made by Max Woolf).
 
-[move to the top](#table-of-contents)
+[move to the top](#Table-of-Contents)
 ## Keras using MXNET Backend
 This environment is retrievable by issuing the following command
 ```bash
-docker pull honghu/keras:mx-cu9-dnn7-py3-18.01
+docker pull honghu/keras:mx-cu9-dnn7-py3-18.03
 ```
 which includes
-1. [*keras-mxnet*](https://pypi.python.org/pypi/keras-mxnet/1.2.2) ```v1.2.2```
-2. *MXNET* ```v1.0.1``` &nbsp;&nbsp;![](https://img.shields.io/badge/build-from%20source-brightgreen.svg)
-3. OpenCV ```v3.4.0``` &nbsp;&nbsp;![](https://img.shields.io/badge/build-from%20source-brightgreen.svg)
+1. *Keras* ```v2.1.3```
+2. *MXNET* ```v1.2.0``` &nbsp;&nbsp;![](https://img.shields.io/badge/built-from%20source-brightgreen.svg)
+3. OpenCV ```v3.4.1``` &nbsp;&nbsp;![](https://img.shields.io/badge/built-from%20source-brightgreen.svg)
 4. common packages for data mining, such as *Pandas*, *Scikit-Learn*, *Matplotlib*, *Seaborn* and *Bokeh*.
 
 Remark
 * All the above-mentioned packages are built for Python```3```.
 * MXNET and OpenCV are built from source. They are compiled with CUDA```9``` and cuDNN```7```.
-* The MXNET backend of Keras is under development. Go to [DMLC's Github](https://github.com/dmlc/keras) for some more details.
+* The MXNET backend of Keras is still under development. See [here](https://github.com/deep-learning-tools/keras/tree/keras2_mxnet_backend) for some more details.
 
-[move to the top](#table-of-contents)
+[move to the top](#Table-of-Contents)
 ## Keras using Theano Backend
 This environment is retrievable by issuing the following command
 ```bash
-docker pull honghu/keras:theano-cu9-dnn7-py3-18.01
+docker pull honghu/keras:theano-cu9-dnn7-py3-18.03
 ```
 which includes
-1. *Keras* ```v2.1.2```
-2. *Theano* ```v1.0.1```  &nbsp;&nbsp;![](https://img.shields.io/badge/build-from%20source-brightgreen.svg)
+1. *Keras* ```v2.1.5```
+2. *Theano* ```v1.0.1```  &nbsp;&nbsp;![](https://img.shields.io/badge/built-from%20source-brightgreen.svg)
 3. *OpenCV* ```v3.4.0```
 4. common packages for data mining, such as *Pandas*, *Scikit-Learn*, *Matplotlib*, *Seaborn* and *Bokeh*.
 
 Remark
 * All the above-mentioned packages are built for Python```3```.
-* Theano is built from source. It takes advantage of NVIDIA's CUDA```9``` and cuDNN```7```.
+* Theano is built from source and is compiled with CUDA```9``` and cuDNN```7```
 
-[move to the top](#table-of-contents)
-## Before Getting Started
-Before we start to learn how to use the docker images you just pulled, let us first get a wrapper file that helps us to get things done easily:
+[move to the top](#Table-of-Contents)
+## ndrun - A Script that Activates a Deep Learning Environment
+Before you proceed to the next section, please get a script (I  call it ```ndrun```) first:
 ```bash
 # Create the "bin" directory if you don't have one inside your home folder.
 if [ ! -d ~/bin ] ;then
@@ -125,14 +113,12 @@ wget -O ~/bin/ndrun https://raw.githubusercontent.com/chi-hung/DockerbuildsKeras
 # Make the wrapper file executable.
 chmod +x ~/bin/ndrun
 ```
-Now, armed with this wrapper file, running scripts inside different docker continers (deep learning environments) is easier than ever.
+```ndrun``` is nothing but a tool that will activate a deep learning environment during the run-time of your script. Before using it, please be sure to re-open your terminal in order to let the system know where this newly-added script ```ndrun``` is. In other words, make sure ```$HOME/bin``` is within your system's ```$PATH``` and then reload ```bash```.
 
-Before we start, please be sure to re-open your terminal in order to let the system know where this newly added script *ndrun* is. In other words, make sure ```$HOME/bin``` is within your system's ```$PATH``` and then reload ```bash```.
-
-[move to the top](#table-of-contents)
+[move to the top](#Table-of-Contents)
 ## Getting Started with the Command Line
 
-### Example: check the framework's version of the running image
+### Example: Check a Framework's Version
 As a starting example, let us prepare and run a script that imports and checks TensorFlow's version:
 ```bash
 # Create a script that checks TensorFlow's version. 
@@ -146,7 +132,7 @@ You should get the following output:
 ```
 TensorFlow version= 1.4.1
 ```
-In the above example, the default docker image ```honghu/keras:tf-cu9-dnn7-py3-avx2-18.01``` was activated, which has TensorFlow and some other useful packages installed. The script then runs within it, printing out the version of TensorFlow it detects.
+In the above example, the default docker image ```honghu/keras:tf-cu9-dnn7-py3-avx2-18.03``` was activated, which has TensorFlow and some other useful packages installed. The script then runs within it, printing out the version of TensorFlow it detects.
 
 Furthermore, the option ```-t``` allows us to specify the type of the image to be activated. For example, you'll be able to check CNTK's version using the option ```-t cntk```, which shows the version of CNTK inside the activated CNTK's image:
 ```bash
@@ -177,24 +163,24 @@ CNTK version= 2.2
 
 Currently, the available types are:
 
-1. ```-t tensorflow```  ***(for TensorFlow)***
-2. ```-t cntk``` ***(for CNTK)***
-3. ```-t mxnet``` ***(for MXNET)***
-4. ```-t theano``` ***(for Theano)***
+1. ```-t tensorflow```  ***(TensorFlow)***
+2. ```-t cntk``` ***(CNTK)***
+3. ```-t mxnet``` ***(MXNET)***
+4. ```-t theano``` ***(Theano)***
 
-Remark: ```-t tensorflow``` will be used by default, if you did not pass the option ```-t``` to *ndrun*.
+Remark: the image of TensorFlow will be used by default, if you did not pass the option ```-t``` to *ndrun*.
 
 The following table lists the defined types and their corresponding docker images.
 
 |Framework |  Type  |  Docker Image (distributer/name:tag)|
 |---|---|---|
-|TensorFlow + Keras| tensorflow  |  honghu/keras:tf-cu9-dnn7-py3-avx2-18.01 |
-|CNTK + Keras| cntk  |  honghu/keras:cntk-cu8-dnn6-py3-18.01 |
-|MXNET + Keras| mxnet  |  honghu/keras:mx-cu9-dnn7-py3-18.01 |
-|Theano + Keras| theano  | honghu/keras:theano-cu9-dnn7-py3-18.01  |
+|TensorFlow + Keras| tensorflow  |  honghu/keras:tf-cu9-dnn7-py3-avx2-18.03 |
+|CNTK + Keras| cntk  |  honghu/keras:cntk-cu9-dnn7-py3-18.03 |
+|MXNET + Keras| mxnet  |  honghu/keras:mx-cu9-dnn7-py3-18.03 |
+|Theano + Keras| theano  | honghu/keras:theano-cu9-dnn7-py3-18.03  |
 
-[go back](#table-of-contents)
-### Example: classify handwritten-digits with TensorFlow
+[move to the top](#Table-of-Contents)
+### Example: Classify Handwritten-Digits with TensorFlow
 Now, let's retreive an example from Google's repository, which constructs a simple neural network (it has only one hidden layer) aimed at handwritten-digits classification. This model is written in TensorFlow and [MNIST](http://yann.lecun.com/exdb/mnist/) is the dataset it's using.
 ```bash
 wget https://raw.githubusercontent.com/tensorflow/tensorflow/master/tensorflow/examples/tutorials/mnist/mnist_with_summaries.py
@@ -225,8 +211,8 @@ Accuracy at step 30: 0.8626
 ...
 ```
 
-[move to the top](#table-of-contents)
-### Example: train a multi-GPU model with TensorFlow
+[move to the top](#Table-of-Contents)
+### Example: Train a Multi-GPU Model using TensorFlow
 The previous example utilizes single GPU only. In this example, we suppose you have multiple GPUs at hand and you would like to train a model that utilizes multi-GPUs.
 
 To be more specific:
@@ -334,10 +320,10 @@ Remark
     2017-10-17 04:37:01.149847: step 90, loss = 3.98 (20516.7 examples/sec; 0.006 sec/batch)
     ```
     
-[move to the top](#table-of-contents)
+[move to the top](#Table-of-Contents)
 ## Subtle Issues When Using the Command Line
 
-### Avoid giving your script extra GPUs.
+### Avoid Giving Your Script Extra GPUs
 Here's the command that assigns 2 GPUs to run the script and we however let the script use only single GPU:
 
 ```bash
@@ -377,8 +363,8 @@ We can check the status of GPUs while this script is running, via ```nvidia-smi`
 ```
 which indicates that only *GPU0* is in use. (Although *GPU1*'s memory is almost fully occupied, it's *GPU-Util* is *0\%*, meaning that it's not used at all.) This is a mistake that should be avoided otherwise you'll waste resources of your GPU.
 
-[move to the top](#table-of-contents)
-### Set *NV_GPU* if you know which GPUs you'd like to use.
+[move to the top](#Table-of-Contents)
+### Set ```NV_GPU``` If You Know Which GPUs You'd Like to Use
 If you'd like to use, say, *GPU 6* and *GPU7* to run your script, you can pass ```NV_GPU=6,7``` to *ndrun*, as the following example:
 ```bash
 # Switch to your home directory.
@@ -403,23 +389,22 @@ NV_GPU=0,1,2,3 ndrun -n 4 python3 models/tutorials/image/cifar10/cifar10_multi_g
                   --batch_size=128 \
                   --fp16
 ```
-However, I would suggest you avoid passing *NV_GPU* to *ndrun*, unless you are pretty sure that's what you want, since *ndrun* will automatically find *available GPUs* for you. Here, an *available* GPU means it has [GPU-Utilization](http://nvidia.custhelp.com/app/answers/detail/a_id/3751/~/useful-nvidia-smi-queries) *< 30%* and has free memory *> 2048MB.*  If you wish, you can modify these criterions inside *ndrun*.
+However, I would suggest you avoid passing *NV_GPU* to ```ndrun```, unless you are pretty sure that's what you want, since ```ndrun``` will automatically find *available GPUs* for you. Here, an *available* GPU means it has [GPU-Utilization](http://nvidia.custhelp.com/app/answers/detail/a_id/3751/~/useful-nvidia-smi-queries) *< 30%* and has free memory *> 2048MB.*  If you wish, you can modify these criterions inside ```ndrun```.
 
-[move to the top](#table-of-contents)
+[move to the top](#Table-of-Contents)
 ## Getting Started with Jupyter Notebook
 
-### Example: Learn MXNET and its gluon interface.
-[MXNET + its gluon interface](http://gluon.mxnet.io/) has nice tutorials written in the format of *Jupyter Notebook*. Let's fetch them into, say, our home directory:
+### Example: Learn MXNET Gluon
+The site of MXNET's [gluon interface](http://gluon.mxnet.io/) contains nice tutorials written in the format of *Jupyter Notebook*. Let's clone them into, say, our home directory:
 ```bash
 cd $HOME
 git clone https://github.com/zackchase/mxnet-the-straight-dope.git
 ```
-Now, you'll see a folder called ```mxnet-the-straight-dope``` within your home directory. Let's switch to this directory and initializes a *Jupyter Notebook server* from there:
+Now, you'll see a folder called ```mxnet-the-straight-dope``` within your home directory. Let's switch to this directory and initialize a *Jupyter Notebook server* from there:
 ```bash
-cd $HOME/mxnet-the-straight-dope
-ndrun -n 1 -t mxnet -p 8889
+cd $HOME/mxnet-the-straight-dope && ndrun -n 1 -t mxnet -p 8889
 ```
-The above lines activate an environment that has MXNET installed. It also use one GPU via ```-n 1``` and open a port at *8889* via ```-p 8889```.
+The above command activates an environment of MXNET that uses single GPU and is now served as a daemon that listens to ```port 8889``` of your host.
 
 Its output is like this:
 ```
@@ -433,10 +418,10 @@ NV_GPU=0
  * To stop and remove this docker daemon, type:
    docker stop d982d8d571f8
 ```
-Now, by opening a web-browser and connecting to the IP-address given, we are able to start learning *gluon*:
+Now, by opening a web-browser and connecting to the URL given above, we are able to start learning *gluon*:
 
 ![IMG_MXNET_GLUON_TUTORIALS](https://i.imgur.com/wODQhGG.png)
 
 Bravo!
 
-[move to the top](#table-of-contents)
+[move to the top](#Table-of-Contents)
