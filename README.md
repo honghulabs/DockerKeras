@@ -1,5 +1,8 @@
 # DockerKeras
-[![GithubStars](https://img.shields.io/github/stars/chi-hung/DockerbuildsKeras.svg?style=social&label=Stars)](https://github.com/chi-hung/DockerbuildsKeras/) [![Docker Pulls](https://img.shields.io/docker/pulls/honghu/keras.svg)](https://hub.docker.com/r/honghu/keras/) [![CreatedByHonghuTech](https://img.shields.io/badge/created%20by-HonghuTech%20-green.svg)](http://www.honghutech.com/)
+ [![CreatedByHonghuTech](https://img.shields.io/badge/maintained%20by-HonghuTech%20(NVIDIA%20Solution%20Provider)-green.svg)](http://www.honghutech.com/)
+--
+[![GithubStars](https://img.shields.io/github/stars/chi-hung/DockerbuildsKeras.svg?style=social&label=Stars)](https://github.com/chi-hung/DockerbuildsKeras/) [![Docker Pulls](https://img.shields.io/docker/pulls/honghu/keras.svg)](https://hub.docker.com/r/honghu/keras/)
+--
 
 Having trouble setting-up *deep learning* environments? We do this for you! From now on, you shall say goodbye to the error messages such as "**...build failed**" or "**an error occurred during installation**" !
 
@@ -130,7 +133,7 @@ ndrun python3 check_tf_version.py
 ```
 You should get the following output:
 ```
-TensorFlow version= 1.4.1
+TensorFlow version= 1.6.0
 ```
 In the above example, the default docker image ```honghu/keras:tf-cu9-dnn7-py3-avx2-18.03``` was activated, which has TensorFlow and some other useful packages installed. The script then runs within it, printing out the version of TensorFlow it detects.
 
@@ -158,7 +161,7 @@ To deactivate the environment run
   source /root/anaconda3/bin/deactivate
 
 ************************************************************
-CNTK version= 2.2
+CNTK version= 2.4
 ```
 
 Currently, the available types are:
