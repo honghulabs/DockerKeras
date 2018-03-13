@@ -1,8 +1,5 @@
 # DockerKeras
- [![CreatedByHonghuTech](https://img.shields.io/badge/maintained%20by-HonghuTech%20(NVIDIA%20Solution%20Provider)-green.svg)](http://www.honghutech.com/)
---
-[![GithubStars](https://img.shields.io/github/stars/chi-hung/DockerbuildsKeras.svg?style=social&label=Stars)](https://github.com/chi-hung/DockerbuildsKeras/) [![Docker Pulls](https://img.shields.io/docker/pulls/honghu/keras.svg)](https://hub.docker.com/r/honghu/keras/)
---
+ [![CreatedByHonghuTech](https://img.shields.io/badge/maintained%20by-HonghuTech%20(NVIDIA%20Solution%20Provider)-green.svg)](http://www.honghutech.com/) [![GithubStars](https://img.shields.io/github/stars/chi-hung/DockerbuildsKeras.svg?style=social&label=Stars)](https://github.com/chi-hung/DockerbuildsKeras/) [![Docker Pulls](https://img.shields.io/docker/pulls/honghu/keras.svg)](https://hub.docker.com/r/honghu/keras/)
 
 Having trouble setting-up *deep learning* environments? We do this for you! From now on, you shall say goodbye to the error messages such as "**...build failed**" or "**an error occurred during installation**" !
 
