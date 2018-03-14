@@ -1,5 +1,5 @@
 # DockerKeras
- [![CreatedByHonghuTech](https://img.shields.io/badge/maintained%20by-HonghuTech%20(NVIDIA%20Solution%20Provider)-green.svg)](http://www.honghutech.com/) [![Docker Pulls](https://img.shields.io/docker/pulls/honghu/keras.svg)](https://hub.docker.com/r/honghu/keras/) [![GithubStars](https://img.shields.io/github/stars/chi-hung/DockerKeras.svg?style=social&label=Stars)](https://github.com/chi-hung/DockerKeras/)
+ [![SupportedByHonghuTech](https://img.shields.io/badge/supported%20by-HonghuTech%20(NVIDIA%20Solution%20Provider)-green.svg)](http://www.honghutech.com/) [![Docker Pulls](https://img.shields.io/docker/pulls/honghu/keras.svg)](https://hub.docker.com/r/honghu/keras/) [![GithubStars](https://img.shields.io/github/stars/chi-hung/DockerKeras.svg?style=social&label=Stars)](https://github.com/chi-hung/DockerKeras/)
 
 Having trouble setting-up *deep learning* environments? We do this for you! From now on, you shall say goodbye to the error messages such as "**...build failed**" or "**an error occurred during installation**" !
 
@@ -27,9 +27,9 @@ See below for what packages are included inside the images we provide and how th
     * [Example: Train a Multi-GPU Model using TensorFlow](#example-train-a-multi-gpu-model-using-tensorflow)
 * [Subtle Issues When Using the Command Line](#subtle-issues-when-using-the-command-line)
     * [Avoid Giving Your Script Extra GPUs](#avoid-giving-your-script-extra-gpus)
-    * [Set `NV_GPU` If You Know Which GPUs You’d Like to Use](#set-nv_gpu-if-you-know-which-gpus-you’d-like-to-use)
+    * [Set `NV_GPU` If You Know Which GPUs You’d Like to Use](#set-nv_gpu-if-you-know-which-gpus-youd-like-to-use)
 * [Getting Started with Jupyter Notebook](#getting-started-with-jupyter-notebook)
-    * [Example: Learn MXNET Gluon](#example-larn-mxnet-gluon)
+    * [Example: Learn MXNET Gluon](#example-learn-mxnet-gluon)
 
 ---
 ## Before Getting Started
@@ -50,7 +50,7 @@ Remark
 * TensorFlow and OpenCV are built from source. They are compiled with CUDA```9``` and cuDNN```7```.
 * This image supports CPU instructions such as SSE4.2, AVX2 and FMA.
 
-[move to the top](#table-of-contents)
+[go top](#table-of-contents)
 ## Keras using CNTK Backend
 This environment is retrievable by issuing the following command
 ```bash
@@ -67,7 +67,7 @@ Remark
 * This image is based on the [official CNTK image](https://hub.docker.com/r/microsoft/cntk/), where CNTK was compiled with CUDA```9``` and cuDNN```7```. 
 * According to Microsoft, CNTK backend of Keras is [still in beta](https://docs.microsoft.com/en-us/cognitive-toolkit/using-cntk-with-keras). But, never mind! For some models such as *LSTM*, switching the backend from TensorFlow to CNTK may increase the speed of training significantly (reference: a [benchmark](http://minimaxir.com/2017/06/keras-cntk/) made by Max Woolf).
 
-[move to the top](#table-of-contents)
+[go top](#table-of-contents)
 ## Keras using MXNET Backend
 This environment is retrievable by issuing the following command
 ```bash
@@ -84,7 +84,7 @@ Remark
 * MXNET and OpenCV are built from source. They are compiled with CUDA```9``` and cuDNN```7```.
 * The MXNET backend of Keras is still under development. See [here](https://github.com/deep-learning-tools/keras/tree/keras2_mxnet_backend) for some more details.
 
-[move to the top](#table-of-contents)
+[go top](#table-of-contents)
 ## Keras using Theano Backend
 This environment is retrievable by issuing the following command
 ```bash
@@ -100,7 +100,7 @@ Remark
 * All the above-mentioned packages are built for Python```3```.
 * Theano is built from source and is compiled with CUDA```9``` and cuDNN```7```
 
-[move to the top](#table-of-contents)
+[go top](#table-of-contents)
 ## ndrun - A Script that Activates a Deep Learning Environment
 Before you proceed to the next section, please get a script (I  call it ```ndrun```) first:
 ```bash
@@ -115,7 +115,7 @@ chmod +x ~/bin/ndrun
 ```
 ```ndrun``` is nothing but a tool that will activate a deep learning environment during the run-time of your script. Before using it, please be sure to re-open your terminal in order to let the system know where this newly-added script ```ndrun``` is. In other words, make sure ```$HOME/bin``` is within your system's ```$PATH``` and then reload ```bash```.
 
-[move to the top](#table-of-contents)
+[go top](#table-of-contents)
 ## Getting Started with the Command Line
 
 ### Example: Check a Framework's Version
@@ -179,7 +179,7 @@ The following table lists the defined types and their corresponding docker image
 |MXNET + Keras| mxnet  |  honghu/keras:mx-cu9-dnn7-py3-18.03 |
 |Theano + Keras| theano  | honghu/keras:theano-cu9-dnn7-py3-18.03  |
 
-[move to the top](#table-of-contents)
+[go top](#table-of-contents)
 ### Example: Classify Handwritten-Digits with TensorFlow
 Now, let's retreive an example from Google's repository, which constructs a simple neural network (it has only one hidden layer) aimed at handwritten-digits classification. This model is written in TensorFlow and [MNIST](http://yann.lecun.com/exdb/mnist/) is the dataset it's using.
 ```bash
@@ -211,7 +211,7 @@ Accuracy at step 30: 0.8626
 ...
 ```
 
-[move to the top](#table-of-contents)
+[go top](#table-of-contents)
 ### Example: Train a Multi-GPU Model using TensorFlow
 The previous example utilizes single GPU only. In this example, we suppose you have multiple GPUs at hand and you would like to train a model that utilizes multi-GPUs.
 
@@ -320,7 +320,7 @@ Remark
     2017-10-17 04:37:01.149847: step 90, loss = 3.98 (20516.7 examples/sec; 0.006 sec/batch)
     ```
     
-[move to the top](#table-of-contents)
+[go top](#table-of-contents)
 ## Subtle Issues When Using the Command Line
 
 ### Avoid Giving Your Script Extra GPUs
@@ -363,7 +363,7 @@ We can check the status of GPUs while this script is running, via ```nvidia-smi`
 ```
 which indicates that only *GPU0* is in use. (Although *GPU1*'s memory is almost fully occupied, it's *GPU-Util* is *0\%*, meaning that it's not used at all.) This is a mistake that should be avoided otherwise you'll waste resources of your GPU.
 
-[move to the top](#table-of-contents)
+[go top](#table-of-contents)
 ### Set ```NV_GPU``` If You Know Which GPUs You'd Like to Use
 If you'd like to use, say, *GPU 6* and *GPU7* to run your script, you can pass ```NV_GPU=6,7``` to *ndrun*, as the following example:
 ```bash
@@ -391,7 +391,7 @@ NV_GPU=0,1,2,3 ndrun -n 4 python3 models/tutorials/image/cifar10/cifar10_multi_g
 ```
 However, I would suggest you avoid passing *NV_GPU* to ```ndrun```, unless you are pretty sure that's what you want, since ```ndrun``` will automatically find *available GPUs* for you. Here, an *available* GPU means it has [GPU-Utilization](http://nvidia.custhelp.com/app/answers/detail/a_id/3751/~/useful-nvidia-smi-queries) *< 30%* and has free memory *> 2048MB.*  If you wish, you can modify these criterions inside ```ndrun```.
 
-[move to the top](#table-of-contents)
+[go top](#table-of-contents)
 ## Getting Started with Jupyter Notebook
 
 ### Example: Learn MXNET Gluon
@@ -424,4 +424,4 @@ Now, by opening a web-browser and connecting to the URL given above, we are able
 
 Bravo!
 
-[move to the top](#table-of-contents)
+[go top](#table-of-contents)
