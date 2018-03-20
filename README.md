@@ -22,7 +22,7 @@ See below for what packages are included inside the images we provide and how th
 * [Keras using Theano Backend](#keras-using-theano-backend)
 * [ndrun - A Script that Activates a Deep Learning Environment](#ndrun---a-script-that-activates-a-deep-learning-environment)
 * [Getting Started with the Command Line](#getting-started-with-the-command-line)
-    * [Example: Check a Framework’s Version](#example-check-a-framework’s-version)
+    * [Example: Check a Framework’s Version](#example-check-a-frameworks-version)
     * [Example: Classify Handwritten-Digits with TensorFlow](#example-classify-handwritten-digits-with-tensorflow)
     * [Example: Train a Multi-GPU Model using TensorFlow](#example-train-a-multi-gpu-model-using-tensorflow)
 * [Subtle Issues When Using the Command Line](#subtle-issues-when-using-the-command-line)
