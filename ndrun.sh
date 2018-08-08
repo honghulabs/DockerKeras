@@ -102,11 +102,10 @@
 #!/bin/bash
 #
 # Setting up default values.
-# By default, 1 GPU is to be used and the TensorFlow's docker image will be chosen. 
-NUM_GPUS=1                    # number of GPUs to be used
-IMG_TYPE='tensorflow'         # type of the image to be running
-EXTRA_OPTS=""                 # extra options while activating the docker image
-PORT=8888
+# By default, 1 GPU is to be used and the TensorFlow's docker image will be selected. 
+NUM_GPUS=1                # the default number of GPUs to be used
+IMG_TAG='tf-latest'      # the default tag of the image to be running
+PORT=8888                 # the default port to be forwarded inside the container
 # By default, port 8888 will be opened as Jupyter Notebook starts.
 # Remark: Jupyter Notebook starts only if there's no given script.
 
@@ -180,10 +179,11 @@ if [ "$HELP" == "true" ] ;then
 fi
 
 # Define colors for verbose/error messages
-CL_RED='\033[1;31m'   # color (light red)
-CL_GREEN='\033[1;32m' # color (light green)
-CL_BLUE='\033[1;34m'  # color (light blue)
-NC='\033[0m'          # no color
+CL_RED='\033[1;31m'    # color (light red)
+CL_GREEN='\033[1;32m'  # color (light green)
+CL_BLUE='\033[1;34m'   # color (light blue)
+CL_PURPLE='\033[1;35m' # color (light purple)
+NC='\033[0m'           # no color
 
 # This script supports only NUM_GPUS=1, 2, 4 or 8.
 if [ "${NUM_GPUS}" == "1" ] || \
@@ -192,7 +192,7 @@ if [ "${NUM_GPUS}" == "1" ] || \
    [ "${NUM_GPUS}" == "8" ] ;then
   :
 else
-  echo -e ${CL_RED} Error. Currently, this script supports only number of GPUs = 1, 2, 4 or 8.${NC}
+  echo -e ${CL_RED}Error. Currently, this script supports only number of GPUs = 1, 2, 4 or 8.${NC}
   exit 1
 fi
 # As the optional arguments are shifted away, intepreter such as
@@ -300,30 +300,37 @@ fi
 export NV_GPU
 
 if [ -z ${NV_GPU} ] ;then
-  echo -e ${CL_RED} Error. No enough GPUs available!${NC}
+  echo -e ${CL_RED}Error. No enough GPUs available!${NC}
   exit 1
-elif [ "${VERBOSE}" == "true" ] ;then
-  echo -e ${CL_GREEN}NV_GPU=${NV_GPU}${NC}
+else
+  echo -e ${CL_GREEN}NV_GPU="${NV_GPU}"${NC}
 fi
 
 # Start the Jupyter Notebook if no script is passed for running.
 if [ -z "${INTEPRETER}" ] && [ -z "${EXE}" ] ;then
   echo -e ${CL_GREEN}Starting Jupyter Notebook...${NC}
-  echo -e NV_GPU="${NV_GPU}"${NC}
 
   if [ -z "${ALIAS}" ] ;then
-    container_id=$(nvidia-docker run -it \
+    docker_cmd="nvidia-docker run -it \
                     -v ${HOST_VOL}:${CONTAINER_VOL} \
                     -p ${PORT}:8888 \
                     ${EXTRA_OPTS} \
-                    -d honghu/keras:${IMG_TAG} )
+                    -d honghu/keras:${IMG_TAG}"
+    if [ "${VERBOSE}" == "true" ] ;then
+      echo -e ${CL_PURPLE}${docker_cmd}
+    fi
+    container_id=$($docker_cmd)  
   else
-    container_id=$(nvidia-docker run -it \
+    docker_cmd="nvidia-docker run -it \
                     --name ${ALIAS} \
                     -v ${HOST_VOL}:${CONTAINER_VOL} \
                     -p ${PORT}:8888 \
                     ${EXTRA_OPTS} \
-                    -d honghu/keras:${IMG_TAG} )
+                    -d honghu/keras:${IMG_TAG}"
+    if [ "${VERBOSE}" == "true" ] ;then
+      echo -e ${CL_PURPLE}${docker_cmd}
+    fi
+    container_id=$($docker_cmd)  
   fi
 
   if [ "$?" == "0" ] ;then
@@ -343,10 +350,13 @@ if [ -z "${INTEPRETER}" ] && [ -z "${EXE}" ] ;then
       my_ip="localhost"
     fi
     # Tell the user how to connect to the Jupyter Notebook via the given token.
+    echo ""
     echo -e ${NC} '*' To use Jupyter Notebook, open a browser and connect to the following address:${NC}
     echo -e ${CL_BLUE} "  http://${my_ip}:${PORT}/?token=${notebook_token}"${NC}
     echo -e ${NC} '*' To stop and remove this daemon container, type:${NC}
     echo -e ${CL_BLUE} "  docker stop ${container_id} && docker rm ${container_id}"${NC}
+    echo -e ${NC} '*' To enter into this docker container, type:${NC}
+    echo -e ${CL_BLUE} "  docker exec -it ${container_id} /bin/bash"${NC}
   else
     echo -e ${CL_RED}An error has occured.
     exit 1
@@ -356,19 +366,29 @@ if [ -z "${INTEPRETER}" ] && [ -z "${EXE}" ] ;then
 elif [ -z $EXE ] ;then
   CMD=${INTEPRETER}
   echo -e ${CL_GREEN}Executing the given command...${NC}
-  nvidia-docker run -it \
+
+  docker_cmd="nvidia-docker run -it \
                     -v ${HOST_VOL}:${CONTAINER_VOL} \
                     --rm \
                     ${EXTRA_OPTS} \
                     honghu/keras:${IMG_TAG} \
-                    ${CMD}
+                    ${CMD}"
+  if [ "${VERBOSE}" == "true" ] ;then
+    echo -e ${CL_PURPLE}${docker_cmd}
+  fi
+  ${docker_cmd}
+  
 
 # Or, if a script is passed for running, run it.
 else
-  nvidia-docker run -it \
+  docker_cmd="nvidia-docker run -it \
                     -v ${HOST_VOL}:${CONTAINER_VOL} \
                     --rm \
                     ${EXTRA_OPTS} \
                     honghu/keras:${IMG_TAG} \
-                    ${INTEPRETER} ${CONTAINER_VOL}/${EXE} $ARGS
+                    ${INTEPRETER} ${CONTAINER_VOL}/${EXE} $ARGS"
+  if [ "${VERBOSE}" == "true" ] ;then
+    echo -e ${CL_PURPLE}${docker_cmd}
+  fi
+  ${docker_cmd}
 fi
