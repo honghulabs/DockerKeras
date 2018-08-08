@@ -69,7 +69,7 @@
 #                  # Run the script (xxx.py). During the run, a volume at the host machine, i.e. 
 #                  # at [host_dir_path], will be mounted as a volume locating at [container_dir_path], 
 #                  # which is a path at the side of the docker container.
-#                  ndrun --extra "-v [host_dir_path]:[container_dir_path] -t mxnet python3 xxx.py
+#                  ndrun --extra "-v [host_dir_path]:[container_dir_path]" -t mxnet python3 xxx.py
 #
 #      -v, --verbose
 #            Entering the verbose mode.
