@@ -1,8 +1,8 @@
 # DockerKeras
-[![Docker Pulls](https://img.shields.io/docker/pulls/honghu/keras.svg)](https://hub.docker.com/r/honghu/keras/) [![GithubStars](https://img.shields.io/github/stars/chi-hung/DockerKeras.svg?style=social&label=Stars)](https://github.com/chi-hung/DockerKeras/)
-
 <img src="https://i.imgur.com/xsEfL7j.png" alt="drawing" width="25px"/> *Supported by HonghuTech, a Taiwanese Deep Learning Solutions Provider*
 ---
+[![Docker Pulls](https://img.shields.io/docker/pulls/honghu/keras.svg)](https://hub.docker.com/r/honghu/keras/) [![GithubStars](https://img.shields.io/github/stars/chi-hung/DockerKeras.svg?style=social&label=Stars)](https://github.com/chi-hung/DockerKeras/)
+
 Having trouble setting-up environments for **Deep Learning**? We do this for you! From now on, you shall say goodbye to annoying messages such as "**Build  failed...**" or "**An error occurred during installation...**".
 
 Currently, we maintain the following docker images:
