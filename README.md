@@ -59,7 +59,7 @@ The following tables list the docker images maintained by us. All these listed i
     |Theano| theano-cu9-dnn7-py3-18.03 <br/> theano-latest  | Theano v1.0.1  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.theano-cuda9-cudnn7-18.03)|
     |Theano| theano-cu9-dnn7-py3-18.01  | Theano v1.0.1  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.theano-cuda9-cudnn7-18.01)|
     
-* Images within the repository:  [**honghu/intelpython3**](https://hub.docker.com/r/honghu/keras/)
+* Images within the repository:  [**honghu/intelpython3**](https://hub.docker.com/r/honghu/intelpython3/)
 
     |  Tag  |  Description | Dockerfile |
     |---|---|:---:|
