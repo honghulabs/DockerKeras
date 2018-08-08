@@ -317,7 +317,7 @@ if [ -z "${INTEPRETER}" ] && [ -z "${EXE}" ] ;then
                     ${EXTRA_OPTS} \
                     -d honghu/keras:${IMG_TAG}"
     if [ "${VERBOSE}" == "true" ] ;then
-      echo -e ${CL_PURPLE}${docker_cmd}
+      echo -e ${CL_PURPLE}${docker_cmd}${NC}
     fi
     container_id=$($docker_cmd)  
   else
@@ -328,7 +328,7 @@ if [ -z "${INTEPRETER}" ] && [ -z "${EXE}" ] ;then
                     ${EXTRA_OPTS} \
                     -d honghu/keras:${IMG_TAG}"
     if [ "${VERBOSE}" == "true" ] ;then
-      echo -e ${CL_PURPLE}${docker_cmd}
+      echo -e ${CL_PURPLE}${docker_cmd}${NC}
     fi
     container_id=$($docker_cmd)  
   fi
@@ -374,7 +374,7 @@ elif [ -z $EXE ] ;then
                     honghu/keras:${IMG_TAG} \
                     ${CMD}"
   if [ "${VERBOSE}" == "true" ] ;then
-    echo -e ${CL_PURPLE}${docker_cmd}
+    echo -e ${CL_PURPLE}${docker_cmd}${NC}
   fi
   ${docker_cmd}
   
@@ -388,7 +388,7 @@ else
                     honghu/keras:${IMG_TAG} \
                     ${INTEPRETER} ${CONTAINER_VOL}/${EXE} $ARGS"
   if [ "${VERBOSE}" == "true" ] ;then
-    echo -e ${CL_PURPLE}${docker_cmd}
+    echo -e ${CL_PURPLE}${docker_cmd}${NC}
   fi
   ${docker_cmd}
 fi
