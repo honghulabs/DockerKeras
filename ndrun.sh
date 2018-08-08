@@ -40,7 +40,7 @@
 #            the specified framework will be activated.
 #
 #            Remark:
-#                  * the defult image's name is TensorFlow
+#                  * the defult image's type is TensorFlow
 #                  * the chosen image must belong to the repository: honghu/keras
 # 
 #      -n, --num_gpus [NUM_GPUS]
