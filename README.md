@@ -47,7 +47,7 @@ The following tables list the docker images maintained by us. All these listed i
 
     |Keras Backend |  Image's Tag  |  Description | Dockerfile |
     |:---:|---|---|:---:|
-    |TensorFlow| tf-cu9.2-dnn7.1-py3-avx2-18.08 <br/> tf-latest | TF v1.10.0rc1 <br/> [Intel® Distribution for Python](https://software.intel.com/en-us/distribution-for-python) v2018.3.039 <br/> [NCCL](https://developer.nvidia.com/nccl) *v2.2.13*| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.tensorflow-cu9.2-cudnn7.1-18.08) |
+    |TensorFlow| tf-cu9.2-dnn7.1-py3-avx2-18.08 <br/> tf-latest | TF v1.10.0 <br/> [Intel® Distribution for Python](https://software.intel.com/en-us/distribution-for-python) v2018.3.039 <br/> [NCCL](https://developer.nvidia.com/nccl) *v2.2.13*| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.tensorflow-cu9.2-cudnn7.1-18.08) |
     |TensorFlow| tf-cu9-dnn7-py3-avx2-18.03  | TF v1.6.0  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.tensorflow-cuda9-cudnn7-avx2-18.03)|
     |TensorFlow| tf-cu9-dnn7-py3-avx2-18.01  | TF v1.4.1  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.tensorflow-cuda9-cudnn7-avx2-18.01)|
     |MXNet| mx-cu9.2-dnn7.1-py3-18.08 <br/> mx-latest  | MXNet v1.3.0-nightly <br/> [GluonCV](https://gluon-cv.mxnet.io) v0.3.0-nightly <br/> [Intel® Distribution for Python](https://software.intel.com/en-us/distribution-for-python) v2018.3.039 <br/> [NCCL](https://developer.nvidia.com/nccl) *v2.2.13* | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.mxnet-cu9.2-cudnn7.1-18.08) |
@@ -75,7 +75,7 @@ docker pull honghu/keras:tf-cu9.2-dnn7.1-py3-avx2-18.08
 ```
 which includes 
 * *Keras* ```v2.2.2```
-* *TensorFlow* ```v1.10.0-rc1```
+* *TensorFlow* ```v1.10.0```
 * *[Intel® Distribution for Python](https://software.intel.com/en-us/distribution-for-python)* ```v2018.3.039```, including accelerated NumPy and scikit-learn.
 * *NVIDIA CUDA*```9.2```, *cuDNN*```7.1``` and *NCCL*```2```.
 * Must-to-have packages such as *XGBOOST*, *Pandas*, *OpenCV*, *imgaug*, *Matplotlib*, *Seaborn* and *Bokeh*.
@@ -158,9 +158,9 @@ ndrun python3 check_tf_version.py
 ```
 And you should get the following output:
 ```
-TensorFlow version= 1.10.0-rc1
+TensorFlow version= 1.10.0
 ```
-which indicates that the current version of *TensorFlow* is ```1.10.0-rc1```. Now, the question then arises: where is this *TensorFlow* installed? Indeed, the *TensorFlow*'s version you've seen is from the *TensorFlow* installed inside our latest *TensorFlow* image.
+which indicates that the current version of *TensorFlow* is ```1.10.0```. Now, the question then arises: where is this *TensorFlow* installed? Indeed, the *TensorFlow*'s version you've seen is from the *TensorFlow* installed inside our latest *TensorFlow* image.
 
 To activate another image, we can use the option ```-t [IMG_TYPE]```. For example, let's now prepare a script that will import CNTK and print its version out:
 ```bash
