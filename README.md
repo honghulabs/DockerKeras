@@ -362,7 +362,7 @@ cd $HOME
 # Train the model.
 ndrun -n 2 python3 models/tutorials/image/cifar10/cifar10_multi_gpu_train.py \
                        --num_gpus=1 \
-                       --data_dir=/notebooks \
+                       --data_dir=/workspace \
                        --batch_size=128 \
                        --max_steps=100 \
                        --fp16
@@ -408,7 +408,7 @@ cd $HOME
 # Train the model using GPU6 and GPU7.
 NV_GPU=6,7 ndrun -n 2 python3 models/tutorials/image/cifar10/cifar10_multi_gpu_train.py \
                 --num_gpus=2 \
-                --data_dir=/notebooks \
+                --data_dir=/workspace \
                 --batch_size=128 \
                 --fp16
 ```
@@ -420,7 +420,7 @@ cd $HOME
 # Train the model using GPU0, GPU1, GPU2 and GPU3.
 NV_GPU=0,1,2,3 ndrun -n 4 python3 models/tutorials/image/cifar10/cifar10_multi_gpu_train.py \
                   --num_gpus=4 \
-                  --data_dir=/notebooks \
+                  --data_dir=/workspace \
                   --batch_size=128 \
                   --fp16
 ```
