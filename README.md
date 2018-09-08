@@ -22,7 +22,7 @@ See below for more details about these environments.
 * [Keras using MXNET Backend](#keras-using-mxnet-backend)
 * [Keras using CNTK Backend](#keras-using-cntk-backend)
 * [Keras using Theano Backend](#keras-using-theano-backend)
-* [ndrun - A Script that Activates a Deep Learning Environment](#ndrun---a-script-helps-to-activate-a-deep-learning-environment)
+* [ndrun - Run a Docker Container for Your Deep-Learning Research](#ndrun---run-a-docker-container-for-your-deep-learning-research)
 * [Getting Started with the Command Line](#getting-started-with-the-command-line)
     * [Example: Check a Framework’s Version](#example-check-a-frameworks-version)
     * [Example: Classify Handwritten-Digits with TensorFlow](#example-classify-handwritten-digits-with-tensorflow)
@@ -37,47 +37,53 @@ See below for more details about these environments.
 ## Before Getting Started
 * *NVIDIA-Docker2* has to be installed. See [[here]](https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)#prerequisites) for how to install and [[here]](https://devblogs.nvidia.com/gpu-containers-runtime/) for its introduction.
 * Docker needs to be configured. For example, you may have to add your user to the ```docker``` group. see [[here]](https://docs.docker.com/install/linux/linux-postinstall/) for Docker setup.
-* Beware: the latest images we built contain CUDA```9.2```, which requires NVIDIA driver version ```>=396```. You can get the latest NVIDIA driver [[here]](http://www.nvidia.com/Download/index.aspx).
+* Beware: the recent images we've built contain CUDA```9.2```, which requires NVIDIA driver version ```>=396```. You can get the latest NVIDIA driver [[here]](http://www.nvidia.com/Download/index.aspx).
 
 [[Back to Top]](#table-of-contents)
 ## Summary of the Images
-The following tables list the docker images maintained by us. All these listed images are retrievable on [Docker Hub](https://hub.docker.com). 
+The following tables list the docker images maintained by us. All these listed images are retrievable through [Docker Hub](https://hub.docker.com). 
 
 * Images within the repository:  [**honghu/keras**](https://hub.docker.com/r/honghu/keras/)
 
     |Keras Backend |  Image's Tag  |  Description | Dockerfile |
     |:---:|---|---|:---:|
-    |TensorFlow| tf-cu9.2-dnn7.1-py3-avx2-18.08 <br/> tf-latest | TF v1.10.0 <br/> [Intel® Distribution for Python](https://software.intel.com/en-us/distribution-for-python) v2018.3.039 <br/> [NCCL](https://developer.nvidia.com/nccl) *v2.2.13*| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.tensorflow-cu9.2-cudnn7.1-18.08) |
-    |TensorFlow| tf-cu9-dnn7-py3-avx2-18.03  | TF v1.6.0  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.tensorflow-cuda9-cudnn7-avx2-18.03)|
-    |TensorFlow| tf-cu9-dnn7-py3-avx2-18.01  | TF v1.4.1  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.tensorflow-cuda9-cudnn7-avx2-18.01)|
-    |MXNet| mx-cu9.2-dnn7.1-py3-18.08 <br/> mx-latest  | MXNet v1.3.0-nightly <br/> [GluonCV](https://gluon-cv.mxnet.io) v0.3.0-nightly <br/> [Intel® Distribution for Python](https://software.intel.com/en-us/distribution-for-python) v2018.3.039 <br/> [NCCL](https://developer.nvidia.com/nccl) *v2.2.13* | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.mxnet-cu9.2-cudnn7.1-18.08) |
-    |MXNet| mx-cu9-dnn7-py3-18.03  | MXNet v1.2.0 | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.mxnet-cuda9-cudnn7-18.03) |
-    |MXNet| mx-cu9-dnn7-py3-18.01  | MXNet v1.0.1 | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.mxnet-cuda9-cudnn7-18.01) |
-    |CNTK| cntk-cu9-dnn7-py3-18.08 <br/> cntk-latest | CNTK v2.5.1  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.cntk-cuda9-cudnn7-18.08) |
-    |CNTK| cntk-cu9-dnn7-py3-18.03  | CNTK v2.4  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.cntk-cuda8-cudnn6-18.03) |
-    |CNTK| cntk-cu8-dnn6-py3-18.01  | CNTK v2.2  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.cntk-cuda8-cudnn6-18.01) |
-    |Theano| theano-cu9-dnn7-py3-18.03 <br/> theano-latest  | Theano v1.0.1  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.theano-cuda9-cudnn7-18.03)|
-    |Theano| theano-cu9-dnn7-py3-18.01  | Theano v1.0.1  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.theano-cuda9-cudnn7-18.01)|
+    |TensorFlow| tf-cu9.2-dnn7.2-py3-avx2-18.09 <br/> *tf-latest* | *TensorFlow* ```v1.10.1``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.2```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.tensorflow-cu9.2-dnn7.2-avx2-18.09) |
+    |TensorFlow| tf-cu9.2-dnn7.1-py3-avx2-18.08| *TensorFlow* ```v1.10.0``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.2```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.tensorflow-cu9.2-dnn7.1-avx2-18.08) |
+    |TensorFlow| tf-cu9-dnn7-py3-avx2-18.03  | *TensorFlow* ```v1.6.0``` <br/> *Keras* ```v2.1.5``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.tensorflow-cu9.0-dnn7.0-avx2-18.03)|
+    |TensorFlow| tf-cu9-dnn7-py3-avx2-18.01  | *TensorFlow* ```v1.4.1``` <br/> *Keras* ```v2.1.2```   | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.tensorflow-cu9.0-dnn7.0-avx2-18.01)|
+    |MXNet| mx-cu9.2-dnn7.2-py3-18.09 <br/> *mx-latest*  | *MXNet* ```v1.3.0-dev``` <br/> [*GluonCV*](https://gluon-cv.mxnet.io) ```v0.3.0-dev``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.2.2``` <br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.mxnet-cu9.2-dnn7.2-18.09) |
+    |MXNet| mx-cu9.2-dnn7.1-py3-18.08 | *MXNet* ```v1.3.0-dev``` <br/> [*GluonCV*](https://gluon-cv.mxnet.io) ```v0.3.0-dev``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.2.0``` <br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.mxnet-cu9.2-dnn7.1-18.08) |
+    |MXNet| mx-cu9-dnn7-py3-18.03  | *MXNet* ```v1.2.0``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.1.3``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.mxnet-cu9.0-dnn7.0-18.03) |
+    |MXNet| mx-cu9-dnn7-py3-18.01  | *MXNet* ```v1.0.1``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki)  ```v1.2.2``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.tensorflow-cu9.0-dnn7.0-avx2-18.01) |
+    |CNTK| cntk-cu9.2-dnn7.2-py3-18.09 <br/> cntk-latest | *CNTK* ```v2.5.1``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.2```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.cntk-cu9.2-dnn7.2-18.09) |
+    |CNTK| cntk-cu9-dnn7-py3-18.08 | *CNTK* ```v2.5.1``` <br/> *Keras* ```v2.2.2```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.cntk-cu9-dnn7-18.08) |
+    |CNTK| cntk-cu9-dnn7-py3-18.03  | *CNTK* ```v2.4``` <br/> *Keras* ```v2.1.5```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.cntk-cu8-dnn6-18.03) |
+    |CNTK| cntk-cu8-dnn6-py3-18.01  | *CNTK* ```v2.2``` <br/> *Keras* ```v2.1.2```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.cntk-cu8-dnn6-18.01) |
+    |Theano| theano-cu9.0-dnn7.0-py3-18.09 <br/> *theano-latest*  | Theano ```v1.0.2``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.2``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.theano-cu9.0-dnn7.2-18.09)|
+    |Theano| theano-cu9-dnn7-py3-18.03 | Theano ```v1.0.1``` <br/> *Keras* ```v2.1.5``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.theano-cu9.0-dnn7.0-18.03)|
+    |Theano| theano-cu9-dnn7-py3-18.01  | Theano ```v1.0.1``` <br/> *Keras* ```v2.1.2``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.theano-cu9.0-dnn7.0-18.01)|
     
 * Images within the repository:  [**honghu/intelpython3**](https://hub.docker.com/r/honghu/intelpython3/)
 
     |  Tag  |  Description | Dockerfile |
     |---|---|:---:|
-    | gpu-cu9.2-dnn7.1-18.08  | [Intel® Distribution for Python](https://software.intel.com/en-us/distribution-for-python) v2018.3.039 <br/> Ubuntu 18.04 |[[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.intelpy3-gpu-cu9.2-cudnn7.1-18.08) |
-    | gpu-cu9-dnn7-18.08  | [Intel® Distribution for Python](https://software.intel.com/en-us/distribution-for-python) v2018.3.039 <br/> Ubuntu 16.04 |[[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.intelpy3-gpu-cu9-cudnn7-18.08) |
-    | cpu-18.08  |  [Intel® Distribution for Python](https://software.intel.com/en-us/distribution-for-python) v2018.3.039 <br/> Ubuntu 18.04| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.intelpy3-cpu-18.08)|
+    | gpu-cu9.2-dnn7.2-18.09  | [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```18.04``` |[[Click]](https://github.com/chi-https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.intelpy3-gpu-cu9.2-dnn7.2-18.09) |
+    | gpu-cu9.0-dnn7.2-18.09  | [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```16.04``` |[[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.intelpy3-gpu-cu9.0-dnn7.2-18.09) |
+    | gpu-cu9.2-dnn7.1-18.08  | [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```18.04``` |[[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.intelpy3-gpu-cu9.2-dnn7.1-18.08) |
+    | cpu-18.09  |  [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```18.04```<br/> | [[Click]](https://github.com/chi-hhttps://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.intelpy3-cpu-18.09)|
+    | cpu-18.08  |  [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```18.04```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.intelpy3-cpu-18.08)|
 
 [[Back to Top]](#table-of-contents)
 ## Keras using TensorFlow Backend
 This environment can be obtained via:
 ```bash
-docker pull honghu/keras:tf-cu9.2-dnn7.1-py3-avx2-18.08
+docker pull honghu/keras:tf-cu9.2-dnn7.2-py3-avx2-18.09
 ```
 which includes 
 * *Keras* ```v2.2.2```
 * *TensorFlow* ```v1.10.0```
 * *[Intel® Distribution for Python](https://software.intel.com/en-us/distribution-for-python)* ```v2018.3.039```, including accelerated NumPy and scikit-learn.
-* *NVIDIA CUDA*```9.2```, *cuDNN*```7.1``` and *NCCL*```2```.
+* *NVIDIA CUDA*```9.2```, *cuDNN*```7.2``` and *NCCL*```2.2```.
 * Must-to-have packages such as *XGBOOST*, *Pandas*, *OpenCV*, *imgaug*, *Matplotlib*, *Seaborn* and *Bokeh*.
 
 [[Back to Top]](#table-of-contents)
@@ -85,49 +91,48 @@ which includes
 ## Keras using MXNET Backend
 This environment can be obtained via:
 ```bash
-docker pull honghu/keras:mx-cu9.2-dnn7.1-py3-18.08
+docker pull honghu/keras:mx-cu9.2-dnn7.2-py3-18.09
 ```
 which includes
-* *[Keras-MXNet](https://github.com/awslabs/keras-apache-mxnet/wiki)* ```v2.2.0```
-* *MXNet* ```v1.3.0-nightly```
-* *[GluonCV](https://gluon-cv.mxnet.io)* ```v0.3.0-nightly```
+* *[Keras-MXNet](https://github.com/awslabs/keras-apache-mxnet/wiki)* ```v2.2.2```
+* *MXNet* ```v1.3.0-dev```
+* *[GluonCV](https://gluon-cv.mxnet.io)* ```v0.3.0-dev```
 * *[Intel® Distribution for Python](https://software.intel.com/en-us/distribution-for-python)* ```v2018.3.039```, including accelerated NumPy and scikit-learn.
-* *NVIDIA CUDA*```9.2```, *cuDNN*```7.1``` and *NCCL*```2```.
+* *NVIDIA CUDA*```9.2```, *cuDNN*```7.2``` and *NCCL*```2.2```.
 * Must-to-have packages such as *XGBOOST*, *Pandas*, *OpenCV*, *imgaug*, *Matplotlib*, *Seaborn* and *Bokeh*.
 
 [[Back to Top]](#table-of-contents)
 ## Keras using CNTK Backend
 This environment can be obtained via:
 ```bash
-docker pull honghu/keras:cntk-cu9-dnn7-py3-18.08
+docker pull honghu/keras:cntk-cu9.2-dnn7.2-py3-18.09
 ```
 which includes
 * *Keras* ```v2.2.2```
-* *CNTK* ```v2.5```
-* *NVIDIA CUDA*```9```, *cuDNN*```7```.
+* *CNTK* ```v2.5.1```
+* *NVIDIA CUDA*```9.2``` and *cuDNN*```7.2```.
 * Must-to-have packages such as *Pandas*, *OpenCV*, *imgaug*, *Matplotlib*, *Seaborn* and *Bokeh*.
 
 Remark
-* This image is based on the [official CNTK image](https://hub.docker.com/r/microsoft/cntk/). 
 * According to Microsoft, CNTK backend of Keras is [still in beta](https://docs.microsoft.com/en-us/cognitive-toolkit/using-cntk-with-keras). But, never mind! For the task such as text generation, switching the backend from TensorFlow to CNTK could possibly increase the speed of training significantly. See a [[benchmark]](http://minimaxir.com/2017/06/keras-cntk/) made by Max Woolf.
 
 [[Back to Top]](#table-of-contents)
 ## Keras using Theano Backend
 This environment can be obtained via:
 ```bash
-docker pull honghu/keras:theano-cu9-dnn7-py3-18.03
+docker pull honghu/keras:theano-cu9.0-dnn7.0-py3-18.09
 ```
 which includes
-* *Keras* ```v2.1.5```
-* *Theano* ```v1.0.1```
-* *NVIDIA CUDA*```9```, *cuDNN*```7```.
+* *Keras* ```v2.2.2```
+* *Theano* ```v1.0.2```
+* *NVIDIA CUDA*```9.0``` and *cuDNN*```7.0```.
 * Must-to-have packages such as *Pandas*, *OpenCV*, *imgaug*, *Matplotlib*, *Seaborn* and *Bokeh*.
 
 Remark
 * As Theano has [stopped developing](https://groups.google.com/forum/#!msg/theano-users/7Poq8BZutbY/rNCIfvAEAwAJ), we will not update this image regularly.
 
 [[Back to Top]](#table-of-contents)
-## ndrun - A Script helps to Activate a Deep Learning Environment
+## ndrun - Run a Docker Container for Your Deep-Learning Research
 Before you proceed to the next section, please get ```ndrun``` first:
 ```bash
 # Create the "bin" directory if you don't have one inside your home folder.
@@ -139,7 +144,10 @@ wget -O ~/bin/ndrun https://raw.githubusercontent.com/chi-hung/DockerbuildsKeras
 # Make the wrapper file executable.
 chmod +x ~/bin/ndrun
 ```
-```ndrun``` is a tool that helps to activate a deep learning environment. Before using it, please be sure to re-open your terminal in order to let the system know where this newly-added script ```ndrun``` is. In other words, make sure ```$HOME/bin``` is within your system's ```$PATH``` and then restart ```bash```.
+```ndrun``` is a tool that helps you to run a deep-learning environment. Before using it, please be sure to re-open your terminal in order to let the system know where this newly-added script ```ndrun``` is. In other words, make sure ```$HOME/bin``` is within your system's ```$PATH``` and then reload ```bash```.
+
+Remark: 
+* ```ndrun``` has to be used along with the recent images (images made starting Sep. 2018). There's no garantee that it will work fine with the older images.
 
 [[Back to Top]](#table-of-contents)
 ## Getting Started with the Command Line
@@ -158,9 +166,9 @@ ndrun python3 check_tf_version.py
 ```
 And you should get the following output:
 ```
-TensorFlow version= 1.10.0
+TensorFlow version= 1.10.1
 ```
-which indicates that the current version of *TensorFlow* is ```1.10.0```. Now, the question then arises: where is this *TensorFlow* installed? Indeed, the *TensorFlow*'s version you've seen is from the *TensorFlow* installed inside our latest *TensorFlow* image.
+which indicates that the current version of *TensorFlow* is ```1.10.1```. Now, the question then arises: where is this *TensorFlow* installed? Indeed, the *TensorFlow*'s version you've seen is from the *TensorFlow* installed inside our latest *TensorFlow* image.
 
 To activate another image, we can use the option ```-t [IMG_TYPE]```. For example, let's now prepare a script that will import CNTK and print its version out:
 ```bash
@@ -169,7 +177,7 @@ printf "import cntk \
         \nprint('CNTK version=',cntk.__version__)" \
         > check_cntk_version.py
 ```
-To run this script using the *CNTK* image, all we need to do is add the option ```-t cntk```:
+To run this script using the *CNTK* image, simply add the option ```-t cntk```:
 ```bash
 # Print CNTK's version out.
 ndrun -t cntk python3 check_cntk_version.py
@@ -177,32 +185,21 @@ ndrun -t cntk python3 check_cntk_version.py
 
 Its output:
 ```
-************************************************************
-CNTK is activated.
-
-Please checkout tutorials and examples here:
-  /cntk/Tutorials
-  /cntk/Examples
-
-To deactivate the environment run
-
-  source /root/anaconda3/bin/deactivate
-
-************************************************************
-CNTK version= 2.5
+CNTK version= 2.5.1
 ```
 
-Currently, the available choices of ```[IMG_TYPE]``` are:
+Currently, the possible choices of ```[IMG_TYPE]``` are:
 
-* ```tensorflow```  (to activate the latest *TensorFlow* image)
-* ```cntk``` (to activate the latest *CNTK* image)
-* ```mxnet``` (to activate the latest *MXNet* image)
-* ```theano``` (to activate the latest *Theano* image)
+* ```tensorflow``` 
+* ```cntk``` 
+* ```mxnet```
+* ```theano```
 
 Remark
-* By default, the latest *TensorFlow* image will be activated, if you don't pass the option ```-t [IMG_TYPE]``` to ```ndrun```.
-* If you don't have the specified image locally, docker will pull it from Docker Hub for you, which' gonna take some time. 
-* You can also activate an image according to its tag. Type ```ndrun --help``` for more details.
+* If you select an image via its type, i.e. via ```[IMG_TYPE]```, then, the latest image of that type will be selected.
+* The latest *TensorFlow* image will be selected, if you do not inform ```ndrun``` which image it should select.
+* If you don't have the selected image locally, docker will pull it from [Docker Hub](https://hub.docker.com) and that might take some time. 
+* You can also select an image via its tag. Type ```ndrun --help``` for more details.
 
 [[Back to Top]](#table-of-contents)
 ### Example: Classify Handwritten-Digits with TensorFlow
@@ -447,14 +444,17 @@ The above command activates the latest *MXNet* image. It utilize 1 GPU and is no
 
 Its output:
 ```
-An intepreter such as python/python3, is not given.
-You did not provide me the script you wish to execute.
-Starting Jupyter Notebook...
+An intepreter such as python3 or bash, is not given.
+You did not provide me the script you would like to execute.
 NV_GPU=0
+Starting Jupyter Notebook...
+
  * To use Jupyter Notebook, open a browser and connect to the following address:
-   http://localhost:8889/?token=2ba19f09d351b67df7d3d447cdf7f65f9e29c1b97ce3b699
- * To stop and remove this daemon container, type:
-   docker stop babe8c1b8fa9 && docker rm babe8c1b8fa9
+   http://localhost:8889/?token=c5676caa643ecf9ebbfd8781381d0c0dbfbfcc1e67028e7a
+ * To stop and remove this container, type:
+   docker stop 5fb5489f198b && docker rm 5fb5489f198b
+ * To enter into this container, type:
+   docker exec -it 5fb5489f198b bash
 ```
 Now, by opening a web browser and connecting to the URL given above, we are able to start learning *MXNet gluon*:
 
@@ -463,3 +463,4 @@ Now, by opening a web browser and connecting to the URL given above, we are able
 Bravo!
 
 [[Back to Top]](#table-of-contents)
+
