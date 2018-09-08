@@ -5,7 +5,7 @@
 #     More info:
 #       * https://software.intel.com/en-us/articles/intel-optimized-packages-for-the-intel-distribution-for-python
 #       * https://software.intel.com/en-us/articles/installing-intel-free-libs-and-python-apt-repo
-#   * CUDA9.2 + cuDNN7
+#   * CUDA9.0 + cuDNN7.2 + NCCL2.2
 #
 # This Dockerfile creates an image that our GPU-enabled TensorFlow & MXNet images will inherit.
 #
@@ -80,9 +80,9 @@ ENV PATH=/opt/intel/intelpython3/bin:${PATH} \
     LD_LIBRARY_PATH=/opt/intel/intelpython3/lib:${LD_LIBRARY_PATH} \
     C_INCLUDE_PATH=/opt/intel/intelpython3/include:${C_INCLUDE_PATH}
 
-# When the bash shell is opened, update env variables of Intel MPI (convenient if we run the container interactively)
-RUN { printf 'source /opt/intel/intelpython3/bin/mpivars.sh release_mt\n'; cat /etc/bash.bashrc; } >/etc/bash.bashrc.new && \
-    mv /etc/bash.bashrc.new /etc/bash.bashrc
+# # Update env variables of Intel MPI.
+# RUN { printf 'source /opt/intel/intelpython3/bin/mpivars.sh release_mt\n'; cat /etc/bash.bashrc; } >/etc/bash.bashrc.new && \
+#     mv /etc/bash.bashrc.new /etc/bash.bashrc
 
 # Install/upgrade/remove Python3 packages:
 #   1. Install Dask (for efficient multi-core parallelism). More info: 
@@ -90,7 +90,7 @@ RUN { printf 'source /opt/intel/intelpython3/bin/mpivars.sh release_mt\n'; cat /
 #       * http://conference.scipy.org/proceedings/scipy2016/pdfs/anton_malakhov.pdf
 #   2. Also, some useful packages are to be installed or upgraded (for image visualization/augmentation, etc).
 #   3. GPU-enabled TensorFlow images, etc, will be constructed based on this image. Hence, to avoid conflits,
-#.     we'll remove Intel's pre-built TensorFlow that are built only for CPU. 
+#      we'll remove Intel's pre-built TensorFlow that is built for CPU only. 
 RUN pip --no-cache-dir install "dask[complete]" \
                                seaborn \
                                bokeh \
@@ -131,6 +131,13 @@ RUN { printf 'alias smi="nvidia-smi"\nalias wsmi="watch -n 1 nvidia-smi"\n'; cat
 # Expose port 8888 for Jupyter.
 EXPOSE 8888
 
+# Upgrade Jupyter Notebook.
+RUN pip --no-cache-dir install --upgrade notebook && \
+    rm -rf /root/.cache
+
+# Using UTF-8 for the environment.
+ENV LANG=C.UTF-8
+
 WORKDIR /workspace
-# If no specific command to execute, run jupyter notebook.
+# If no command is given, run jupyter notebook.
 CMD ["/run_jupyter.sh", "--allow-root"]
