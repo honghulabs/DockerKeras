@@ -7,7 +7,9 @@
 #
 # This image is based on "honghu/intelpython3:gpu-cu9.2-dnn7.2-18.09",
 # where "Intel® Distribution for Python" is installed.
+#
 #################################################################################
+#
 # More Information
 #   * GluonCV:
 #       https://gluon-cv.mxnet.io
@@ -15,7 +17,9 @@
 #       https://software.intel.com/en-us/distribution-for-python
 #   * keras-mxnet: 
 #       https://github.com/awslabs/keras-apache-mxnet/wiki
+#
 #################################################################################
+#
 # Software License Agreement
 #   If you use the docker image built from this Dockerfile, it means 
 #   you accept the following agreements:
@@ -25,6 +29,7 @@
 #         https://docs.nvidia.com/deeplearning/sdk/cudnn-sla/index.html
 #     * NVIDIA NCCL:
 #         https://docs.nvidia.com/deeplearning/sdk/nccl-sla/index.html
+#
 #################################################################################
 FROM honghu/intelpython3:gpu-cu9.2-dnn7.2-18.09
 LABEL maintainer="Chi-Hung Weng <wengchihung@gmail.com>"

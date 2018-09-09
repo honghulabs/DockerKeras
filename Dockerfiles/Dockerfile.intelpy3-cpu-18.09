@@ -94,12 +94,16 @@ RUN pip --no-cache-dir install "dask[complete]" \
                                bokeh \
                                autograd \
                                mlxtend \
+                               watermark \
                                pydot-ng \
                                tqdm \
                                oauth2client \
                                pygsheets \
-                               tables && \
-    pip install git+https://github.com/aleju/imgaug && \
+                               tables \
+                               pydicom \
+                               bs4 \
+                               statsmodels && \
+    pip --no-cache-dir install git+https://github.com/aleju/imgaug && \
     pip --no-cache-dir install --upgrade --upgrade-strategy only-if-needed h5py keras==${KERAS_VER} && \
     rm -rf /tmp/pip* && \
     rm -rf /root/.cache
