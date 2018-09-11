@@ -54,6 +54,8 @@ RUN apt update && apt install -y --no-install-recommends \
         libjpeg-dev \
         libtiff-dev \
         libdc1394-22-dev \
+        unixodbc \
+        unixodbc-dev \
         graphviz \
         htop \
         vim && \
@@ -101,8 +103,11 @@ RUN pip --no-cache-dir install "dask[complete]" \
                                pygsheets \
                                tables \
                                pydicom \
+                               imageio \
                                bs4 \
-                               statsmodels && \
+                               statsmodels \
+                               pyodbc \
+                               SQLAlchemy && \
     pip --no-cache-dir install git+https://github.com/aleju/imgaug && \
     pip --no-cache-dir install --upgrade --upgrade-strategy only-if-needed h5py keras==${KERAS_VER} && \
     rm -rf /tmp/pip* && \
