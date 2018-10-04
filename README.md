@@ -12,7 +12,7 @@ Currently, we maintain the following docker images:
 * *Keras using MXNET Backend*
 * *Keras using Theano Backend*
 
-Apparantly, all these environments support using **[Keras](https://keras.io)** as the frontend.
+Apparently, all these environments support using **[Keras](https://keras.io)** as the frontend.
 
 See below for more details about these environments.
 ## Table of Contents
