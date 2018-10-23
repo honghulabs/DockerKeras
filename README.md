@@ -12,7 +12,7 @@ Currently, we maintain the following docker images:
 * *Keras using MXNET Backend*
 * *Keras using Theano Backend*
 
-Apparantly, all these environments support using **[Keras](https://keras.io)** as the frontend.
+Apparently, all these environments support using **[Keras](https://keras.io)** as the frontend.
 
 See below for more details about these environments.
 ## Table of Contents
@@ -429,17 +429,27 @@ However, I would suggest you avoid passing *NV_GPU* to ```ndrun```, unless you a
 
 [[Back to Top]](#table-of-contents)
 
-###Run Commands on Behalf of Yourself
-Normally, any command you type inside the terminal is excuted by yourself. However, this is not the default behaviour if you are using Docker. For example, if you touch a file called ```newfile``` insode a docker container:
+### Run Commands on Behalf of Yourself
+Normally, any command you type inside the terminal is excuted by yourself. However, this is not the default behaviour if you are using Docker. For example, if you touch a file called ```newfile``` inside a docker container:
 ```bash
-chweng@wengs_pc:~$ ndrun touch newfile && ls -hl newfile
+# create an empty file and see who owns it
+ndrun touch newfile && ls -hl newfile
+```
+You shall see the following output:
+```
 NV_GPU=0
 -rw-r--r-- 1 root root 0 Oct 23 09:27 newfile
 ```
-i.e. the new file you have created is owned by ```root``` because ```touch``` is executed by ```root``` inside your docker container. To avoid this behavior, you can feed the option  ```-u [USERNAME]``` while calling ```ndrun```:
+i.e. the new file you have created is owned by ```root``` because ```touch``` is executed by ```root``` inside the activated docker container. To avoid this behavior, you can feed the option  ```-u [USERNAME]``` while calling ```ndrun```:
 
 ```bash
-chweng@wengs_pc:~$ ndrun -u chweng touch newfile2 && ls -hl newfile2
+# create an empty file and see who owns it. 
+# the command "touch newfile2" will be executed
+# on behalf of the user: chweng
+ndrun -u chweng touch newfile2 && ls -hl newfile2
+```
+Its output is as follows:
+```
 You have provided a username. We will now create a docker image for that user.
 Sending build context to Docker daemon  2.048kB
 Step 1/7 : FROM honghu/keras:tf-latest
@@ -484,11 +494,14 @@ Successfully tagged honghu/keras:tf-latest-chweng
 NV_GPU=0
 -rw-r--r-- 1 chweng chweng 0 Oct 23 09:34 newfile2
 ```
-Notice that, the newly-created file ```newfile2``` is no longer owned by ```root```! Instead, it is now owned by the user ```chweng```. Hence, with the help of ```-u [USERNAME]```, you are now able to run commands on behalf of a specific user inside a container.
+
+which shows that, the newly-created file ```newfile2``` is not owned by ```root```! Instead, it is owned by ```chweng```.
+
+Hence, with the help of ```-u [USERNAME]```, you are now able to run any command on behalf of a specific user.
 
 Remark: 
 
-* In order to run commands on behalf of a specific user inside a container, we actually will create a new docker image (originally based on Ubuntu) that contains the user you specified.
+* In order to run commands on behalf of a specific user, we actually will create a new docker image (which is originally based on Ubuntu) that contains the user you specified.
 * In terminal, type ```cut -d: -f1 /etc/passwd```  for a list of users of your system.
 
 [[Back to Top]](#table-of-contents)
