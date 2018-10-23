@@ -501,7 +501,7 @@ Hence, with the help of ```-u [USERNAME]```, you are now able to run any command
 
 Remark: 
 
-* In order to run commands on behalf of a specific user, we actually will create a new docker image (which is originally based on Ubuntu) that contains the user you specified.
+* In order to run commands on behalf of a specific user, a new image for the specified user will be created and named as ```honghu/keras:[SELECTED_IMG_TAG]-[USERNAME]```.
 * In terminal, type ```cut -d: -f1 /etc/passwd```  for a list of users of your system.
 
 [[Back to Top]](#table-of-contents)
