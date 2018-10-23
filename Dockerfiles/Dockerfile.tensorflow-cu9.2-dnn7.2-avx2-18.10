@@ -1,9 +1,9 @@
 #########################################################################################################
 #
 # Dockerfile for:
-#   * TensorFlow v1.10.1
+#   * TensorFlow v1.11
 #   * CUDA9.2 + cuDNN7.2 + NCCL2.2
-#   * Keras v2.2.2
+#   * Keras v2.2.4
 #
 # Several lines of this Dockerfile are from:
 #   https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/Dockerfile.devel-gpu
@@ -38,9 +38,9 @@ ARG NUM_CPUS_FOR_BUILD=16
 # Specify the version of Bazel.
 ARG BAZEL_VER=0.15.0
 # Specify the branch of TensorFlow.
-ARG TF_BR=r1.10
+ARG TF_BR=r1.11
 # Specify the version of Keras.
-ARG KERAS_VER=2.2.2
+ARG KERAS_VER=2.2.4
 # Specify the version of NCCL2.
 #ARG NCCL2_FNAME=nccl_2.2.13-1+cuda9.2_x86_64
 
@@ -74,6 +74,10 @@ RUN curl -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHT
 RUN mkdir /usr/local/cuda/lib && \
     ln -s /usr/lib/x86_64-linux-gnu/libnccl.so.2 /usr/local/cuda/lib/libnccl.so.2 && \
     ln -s /usr/include/nccl.h /usr/local/cuda/include/nccl.h
+
+# "keras_applications" & "keras_preprocessing" has to be pre-installed.
+# issue: https://github.com/tensorflow/tensorflow/issues/21518
+RUN pip --no-cache-dir install keras_applications keras_preprocessing --no-deps
 
 # Get TensorFlow.
 RUN git clone --branch=${TF_BR} --depth=1 https://github.com/tensorflow/tensorflow.git /opt/tensorflow
