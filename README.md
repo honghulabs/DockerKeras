@@ -25,11 +25,12 @@ See below for more details about these environments.
 * [ndrun - Run a Docker Container for Your Deep-Learning Research](#ndrun---run-a-docker-container-for-your-deep-learning-research)
 * [Getting Started with the Command Line](#getting-started-with-the-command-line)
     * [Example: Check a Framework’s Version](#example-check-a-frameworks-version)
-    * [Example: Classify Handwritten-Digits with TensorFlow](#example-classify-handwritten-digits-with-tensorflow)
-    * [Example: Train a Multi-GPU Model using TensorFlow](#example-train-a-multi-gpu-model-using-tensorflow)
+    * [Example: Classify Handwritten-Digits With TensorFlow](#example-classify-handwritten-digits-with-tensorflow)
+    * [Example: Train a Multi-GPU Model Using TensorFlow](#example-train-a-multi-gpu-model-using-tensorflow)
 * [Advanced Usage of the Command Line](#advanced-usage-of-the-command-line)
     * [Avoid Giving Your Script Extra GPUs](#avoid-giving-your-script-extra-gpus)
     * [Set `NV_GPU` If You Know Which GPUs You’d Like to Use](#set-nv_gpu-if-you-know-which-gpus-youd-like-to-use)
+    * [Run Commands on Behalf of Yourself](#run-commands-on-behalf-of-yourself)
 * [Getting Started with Jupyter Notebook](#getting-started-with-jupyter-notebook)
     * [Learn Deep Learning with MXNET Gluon](#example-learn-deep-learning-with-mxnet-gluon)
 
@@ -47,31 +48,34 @@ The following tables list the docker images maintained by us. All these listed i
 
     |Keras Backend |  Image's Tag  |  Description | Dockerfile |
     |:---:|---|---|:---:|
-    |TensorFlow| tf-cu9.2-dnn7.2-py3-avx2-18.09 <br/> *tf-latest* | *TensorFlow* ```v1.10.1``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.2```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.tensorflow-cu9.2-dnn7.2-avx2-18.09) |
-    |TensorFlow| tf-cu9.2-dnn7.1-py3-avx2-18.08| *TensorFlow* ```v1.10.0``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.2```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.tensorflow-cu9.2-dnn7.1-avx2-18.08) |
-    |TensorFlow| tf-cu9-dnn7-py3-avx2-18.03  | *TensorFlow* ```v1.6.0``` <br/> *Keras* ```v2.1.5``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.tensorflow-cu9.0-dnn7.0-avx2-18.03)|
-    |TensorFlow| tf-cu9-dnn7-py3-avx2-18.01  | *TensorFlow* ```v1.4.1``` <br/> *Keras* ```v2.1.2```   | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.tensorflow-cu9.0-dnn7.0-avx2-18.01)|
-    |MXNet| mx-cu9.2-dnn7.2-py3-18.09 <br/> *mx-latest*  | *MXNet* ```v1.3.0-dev``` <br/> [*GluonCV*](https://gluon-cv.mxnet.io) ```v0.3.0-dev``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.2.2``` <br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.mxnet-cu9.2-dnn7.2-18.09) |
-    |MXNet| mx-cu9.2-dnn7.1-py3-18.08 | *MXNet* ```v1.3.0-dev``` <br/> [*GluonCV*](https://gluon-cv.mxnet.io) ```v0.3.0-dev``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.2.0``` <br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.mxnet-cu9.2-dnn7.1-18.08) |
-    |MXNet| mx-cu9-dnn7-py3-18.03  | *MXNet* ```v1.2.0``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.1.3``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.mxnet-cu9.0-dnn7.0-18.03) |
-    |MXNet| mx-cu9-dnn7-py3-18.01  | *MXNet* ```v1.0.1``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki)  ```v1.2.2``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.tensorflow-cu9.0-dnn7.0-avx2-18.01) |
-    |CNTK| cntk-cu9.2-dnn7.2-py3-18.09 <br/> cntk-latest | *CNTK* ```v2.5.1``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.2```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.cntk-cu9.2-dnn7.2-18.09) |
-    |CNTK| cntk-cu9-dnn7-py3-18.08 | *CNTK* ```v2.5.1``` <br/> *Keras* ```v2.2.2```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.cntk-cu9-dnn7-18.08) |
-    |CNTK| cntk-cu9-dnn7-py3-18.03  | *CNTK* ```v2.4``` <br/> *Keras* ```v2.1.5```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.cntk-cu8-dnn6-18.03) |
-    |CNTK| cntk-cu8-dnn6-py3-18.01  | *CNTK* ```v2.2``` <br/> *Keras* ```v2.1.2```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.cntk-cu8-dnn6-18.01) |
-    |Theano| theano-cu9.0-dnn7.0-py3-18.09 <br/> *theano-latest*  | Theano ```v1.0.2``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.2``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.theano-cu9.0-dnn7.2-18.09)|
-    |Theano| theano-cu9-dnn7-py3-18.03 | Theano ```v1.0.1``` <br/> *Keras* ```v2.1.5``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.theano-cu9.0-dnn7.0-18.03)|
-    |Theano| theano-cu9-dnn7-py3-18.01  | Theano ```v1.0.1``` <br/> *Keras* ```v2.1.2``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.theano-cu9.0-dnn7.0-18.01)|
+    |TensorFlow| tf-cu9.2-dnn7.2-py3-avx2-18.10 <br/> *tf-latest* | *TensorFlow* ```v1.11.0``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.4```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu9.2-dnn7.2-avx2-18.10.dockerfile) |
+    |TensorFlow| tf-cu9.2-dnn7.2-py3-avx2-18.09 <br/> *tf-latest* | *TensorFlow* ```v1.10.1``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.2```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu9.2-dnn7.2-avx2-18.09.dockerfile) |
+    |TensorFlow| tf-cu9.2-dnn7.1-py3-avx2-18.08| *TensorFlow* ```v1.10.0``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.2```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu9.2-dnn7.1-avx2-18.08.dockerfile) |
+    |TensorFlow| tf-cu9-dnn7-py3-avx2-18.03  | *TensorFlow* ```v1.6.0``` <br/> *Keras* ```v2.1.5``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu9.0-dnn7.0-avx2-18.03.dockerfile)|
+    |TensorFlow| tf-cu9-dnn7-py3-avx2-18.01  | *TensorFlow* ```v1.4.1``` <br/> *Keras* ```v2.1.2```   | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu9.0-dnn7.0-avx2-18.01.dockerfile)|
+     |MXNet| mx-cu9.2-dnn7.2-py3-18.10 <br/> *mx-latest*  | *MXNet* ```v1.3.0-dev``` <br/> [*GluonCV*](https://gluon-cv.mxnet.io) ```v0.3.0-dev``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.2.4.1``` <br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/MXNet/mxnet-cu9.2-dnn7.2-18.10.dockerfile) |
+    |MXNet| mx-cu9.2-dnn7.2-py3-18.09 <br/> *mx-latest*  | *MXNet* ```v1.3.0-dev``` <br/> [*GluonCV*](https://gluon-cv.mxnet.io) ```v0.3.0-dev``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.2.2``` <br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/MXNet/mxnet-cu9.2-dnn7.2-18.09.dockerfile) |
+    |MXNet| mx-cu9.2-dnn7.1-py3-18.08 | *MXNet* ```v1.3.0-dev``` <br/> [*GluonCV*](https://gluon-cv.mxnet.io) ```v0.3.0-dev``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.2.0``` <br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/MXNet/mxnet-cu9.2-dnn7.1-18.08.dockerfile) |
+    |MXNet| mx-cu9-dnn7-py3-18.03  | *MXNet* ```v1.2.0``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.1.3``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/MXNet/mxnet-cu9.0-dnn7.0-18.03.dockerfile) |
+    |MXNet| mx-cu9-dnn7-py3-18.01  | *MXNet* ```v1.0.1``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki)  ```v1.2.2``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/MXNet/mxnet-cu9.0-dnn7.0-18.01.dockerfile) |
+    |CNTK| cntk-cu9.2-dnn7.2-py3-18.10 <br/> cntk-latest | *CNTK* ```v2.5.1``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.2```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/CNTK/cntk-cu9.2-dnn7.2-18.10.dockerfile) |
+    |CNTK| cntk-cu9.2-dnn7.2-py3-18.09 <br/> cntk-latest | *CNTK* ```v2.5.1``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.2```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/CNTK/cntk-cu9.2-dnn7.2-18.09.dockerfile) |
+    |CNTK| cntk-cu9-dnn7-py3-18.08 | *CNTK* ```v2.5.1``` <br/> *Keras* ```v2.2.2```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/CNTK/cntk-cu9-dnn7-18.08.dockerfile) |
+    |CNTK| cntk-cu9-dnn7-py3-18.03  | *CNTK* ```v2.4``` <br/> *Keras* ```v2.1.5```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/CNTK/cntk-cu8-dnn6-18.03.dockerfile) |
+    |CNTK| cntk-cu8-dnn6-py3-18.01  | *CNTK* ```v2.2``` <br/> *Keras* ```v2.1.2```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/CNTK/cntk-cu8-dnn6-18.01.dockerfile) |
+    |Theano| theano-cu9.0-dnn7.0-py3-18.09 <br/> *theano-latest*  | Theano ```v1.0.2``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.2``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Theano/theano-cu9.0-dnn7.2-18.09.dockerfile)|
+    |Theano| theano-cu9-dnn7-py3-18.03 | Theano ```v1.0.1``` <br/> *Keras* ```v2.1.5``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Theano/theano-cu9.0-dnn7.0-18.03.dockerfile)|
+    |Theano| theano-cu9-dnn7-py3-18.01  | Theano ```v1.0.1``` <br/> *Keras* ```v2.1.2``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Theano/theano-cu9.0-dnn7.0-18.01.dockerfile)|
     
 * Images within the repository:  [**honghu/intelpython3**](https://hub.docker.com/r/honghu/intelpython3/)
 
     |  Tag  |  Description | Dockerfile |
     |---|---|:---:|
-    | gpu-cu9.2-dnn7.2-18.09  | [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```18.04``` |[[Click]](https://github.com/chi-https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.intelpy3-gpu-cu9.2-dnn7.2-18.09) |
-    | gpu-cu9.0-dnn7.2-18.09  | [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```16.04``` |[[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.intelpy3-gpu-cu9.0-dnn7.2-18.09) |
-    | gpu-cu9.2-dnn7.1-18.08  | [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```18.04``` |[[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.intelpy3-gpu-cu9.2-dnn7.1-18.08) |
-    | cpu-18.09  |  [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```18.04```<br/> | [[Click]](https://github.com/chi-hhttps://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.intelpy3-cpu-18.09)|
-    | cpu-18.08  |  [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```18.04```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Dockerfile.intelpy3-cpu-18.08)|
+    | gpu-cu9.2-dnn7.2-18.09  | [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```18.04``` |[[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/IntelPython3/intelpy3-gpu-cu9.2-dnn7.2-18.09.dockerfile) |
+    | gpu-cu9.0-dnn7.2-18.09  | [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```16.04``` |[[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/IntelPython3/intelpy3-gpu-cu9.0-dnn7.2-18.09.dockerfile) |
+    | gpu-cu9.2-dnn7.1-18.08  | [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```18.04``` |[[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/IntelPython3/intelpy3-gpu-cu9.2-dnn7.1-18.08.dockerfile) |
+    | cpu-18.09  |  [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```18.04```<br/> | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/IntelPython3/intelpy3-cpu-18.09.dockerfile)|
+    | cpu-18.08  |  [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```18.04```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/IntelPython3/intelpy3-cpu-18.08.dockerfile)|
 
 [[Back to Top]](#table-of-contents)
 ## Keras using TensorFlow Backend
@@ -202,7 +206,7 @@ Remark
 * You can also select an image via its tag. Type ```ndrun --help``` for more details.
 
 [[Back to Top]](#table-of-contents)
-### Example: Classify Handwritten-Digits with TensorFlow
+### Example: Classify Handwritten-Digits With TensorFlow
 Now, let's retrieve an example from Google's GitHub repository aimed at handwritten-digits classification. This simple model (has only one hidden layer) is written in *TensorFlow* and [*MNIST*](http://yann.lecun.com/exdb/mnist/) is the dataset it's using.
 ```bash
 # Get "mnist_with_summaries.py" from Google's GitHub repository.
@@ -235,7 +239,7 @@ Accuracy at step 30: 0.8626
 ```
 
 [[Back to Top]](#table-of-contents)
-### Example: Train a Multi-GPU Model using TensorFlow
+### Example: Train a Multi-GPU Model Using TensorFlow
 The previous example utilizes only one GPU. In this example, we suppose you have multiple GPUs at hand and you would like to train a model that utilizes multi-GPUs.
 
 To be more specific:
@@ -421,7 +425,71 @@ NV_GPU=0,1,2,3 ndrun -n 4 python3 models/tutorials/image/cifar10/cifar10_multi_g
                   --batch_size=128 \
                   --fp16
 ```
-However, I would suggest you avoid passing *NV_GPU* to ```ndrun```, unless you are pretty sure that's what you want. This is because ```ndrun``` will **automatically find available GPU devices for you**. Here, an *available* GPU device means it has [GPU-Utilization](http://nvidia.custhelp.com/app/answers/detail/a_id/3751/~/useful-nvidia-smi-queries) *< 30%* and has free memory *> 2048MB.*  If you wish, you can rewrite these criteria inside ```ndrun```.
+However, I would suggest you avoid passing *NV_GPU* to ```ndrun```, unless you are pretty sure that's what you want. That's because ```ndrun``` will **automatically find available GPU devices for you**. Here, an *available* GPU device means it has [GPU-Utilization](http://nvidia.custhelp.com/app/answers/detail/a_id/3751/~/useful-nvidia-smi-queries) *< 30%* and has free memory *> 2048MB.*  If you wish, you can rewrite these criteria inside ```ndrun```.
+
+[[Back to Top]](#table-of-contents)
+
+###Run Commands on Behalf of Yourself
+Normally, any command you type inside the terminal is excuted by yourself. However, this is not the default behaviour if you are using Docker. For example, if you touch a file called ```newfile``` insode a docker container:
+```bash
+chweng@wengs_pc:~$ ndrun touch newfile && ls -hl newfile
+NV_GPU=0
+-rw-r--r-- 1 root root 0 Oct 23 09:27 newfile
+```
+i.e. the new file you have created is owned by ```root``` because ```touch``` is executed by ```root``` inside your docker container. To avoid this behavior, you can feed the option  ```-u [USERNAME]``` while calling ```ndrun```:
+
+```bash
+chweng@wengs_pc:~$ ndrun -u chweng touch newfile2 && ls -hl newfile2
+You have provided a username. We will now create a docker image for that user.
+Sending build context to Docker daemon  2.048kB
+Step 1/7 : FROM honghu/keras:tf-latest
+ ---> 1423013fa0c0
+Step 2/7 : RUN groupadd -g 1001 chweng
+ ---> Running in 64dd90f26709
+Removing intermediate container 64dd90f26709
+ ---> 101e44ef92f6
+Step 3/7 : RUN useradd -rm -s /bin/bash -u 1001 -g 1001 chweng
+ ---> Running in d3960f3010a4
+Removing intermediate container d3960f3010a4
+ ---> ebb5a45244c3
+Step 4/7 : USER chweng
+ ---> Running in fbd7557eb97c
+Removing intermediate container fbd7557eb97c
+ ---> 686ed15296bd
+Step 5/7 : ENV HOME /home/chweng
+ ---> Running in 52719f65b75d
+Removing intermediate container 52719f65b75d
+ ---> acdfc026fea0
+Step 6/7 : RUN mkdir -p /home/chweng/.jupyter && wget -O /home/chweng/.jupyter/jupyter_notebook_config.py https://raw.githubusercontent.com/tensorflow/tensorflow/master/tensorflow/tools/docker/jupyter_notebook_config.py
+ ---> Running in 35de7ae55b28
+wget: /opt/intel/intelpython3/lib/libuuid.so.1: no version information available (required by wget)
+--2018-10-23 01:34:24--  https://raw.githubusercontent.com/tensorflow/tensorflow/master/tensorflow/tools/docker/jupyter_notebook_config.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.0.133, 151.101.64.133, 151.101.128.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.0.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1220 (1.2K) [text/plain]
+Saving to: ‘/home/chweng/.jupyter/jupyter_notebook_config.py’
+
+     0K .                                                     100%  142M=0s
+
+2018-10-23 01:34:25 (142 MB/s) - ‘/home/chweng/.jupyter/jupyter_notebook_config.py’ saved [1220/1220]
+
+Removing intermediate container 35de7ae55b28
+ ---> a90ee4846193
+Step 7/7 : WORKDIR /workspace
+Removing intermediate container a283db0b088c
+ ---> 006bd114ac71
+Successfully built 006bd114ac71
+Successfully tagged honghu/keras:tf-latest-chweng
+NV_GPU=0
+-rw-r--r-- 1 chweng chweng 0 Oct 23 09:34 newfile2
+```
+Notice that, the newly-created file ```newfile2``` is no longer owned by ```root```! Instead, it is now owned by the user ```chweng```. Hence, with the help of ```-u [USERNAME]```, you are now able to run commands on behalf of a specific user inside a container.
+
+Remark: 
+
+* In order to run commands on behalf of a specific user inside a container, we actually will create a new docker image (originally based on Ubuntu) that contains the user you specified.
+* In terminal, type ```cut -d: -f1 /etc/passwd```  for a list of users of your system.
 
 [[Back to Top]](#table-of-contents)
 ## Getting Started with Jupyter Notebook
@@ -463,4 +531,5 @@ Now, by opening a web browser and connecting to the URL given above, we are able
 Bravo!
 
 [[Back to Top]](#table-of-contents)
+
 
