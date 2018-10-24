@@ -81,7 +81,7 @@ The following tables list the docker images maintained by us. All these listed i
 ## Keras using TensorFlow Backend
 This environment can be obtained via:
 ```bash
-docker pull honghu/keras:tf-cu9.2-dnn7.2-py3-avx2-18.09
+docker pull honghu/keras:tf-cu9.2-dnn7.2-py3-avx2-18.10
 ```
 which includes 
 * *Keras* ```v2.2.4```
@@ -95,7 +95,7 @@ which includes
 ## Keras using MXNET Backend
 This environment can be obtained via:
 ```bash
-docker pull honghu/keras:mx-cu9.2-dnn7.2-py3-18.09
+docker pull honghu/keras:mx-cu9.2-dnn7.2-py3-18.10
 ```
 which includes
 * *[Keras-MXNet](https://github.com/awslabs/keras-apache-mxnet/wiki)* ```v2.2.4.1```
@@ -109,7 +109,7 @@ which includes
 ## Keras using CNTK Backend
 This environment can be obtained via:
 ```bash
-docker pull honghu/keras:cntk-cu9.2-dnn7.2-py3-18.09
+docker pull honghu/keras:cntk-cu9.2-dnn7.2-py3-18.10
 ```
 which includes
 * *Keras* ```v2.2.4```
