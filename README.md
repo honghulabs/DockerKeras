@@ -170,9 +170,9 @@ ndrun python3 check_tf_version.py
 ```
 And you should get the following output:
 ```
-TensorFlow version= 1.10.1
+TensorFlow version= 1.11.0
 ```
-which indicates that the current version of *TensorFlow* is ```1.10.1```. Now, the question then arises: where is this *TensorFlow* installed? Indeed, the *TensorFlow*'s version you've seen is from the *TensorFlow* installed inside our latest *TensorFlow* image.
+which indicates that the current version of *TensorFlow* is ```1.11.0```. Now, the question then arises: where is this *TensorFlow* installed? Indeed, the *TensorFlow*'s version you've seen is from the *TensorFlow* installed inside our latest *TensorFlow* image.
 
 To activate another image, we can use the option ```-t [IMG_TYPE]```. For example, let's now prepare a script that will import CNTK and print its version out:
 ```bash
@@ -189,7 +189,7 @@ ndrun -t cntk python3 check_cntk_version.py
 
 Its output:
 ```
-CNTK version= 2.5.1
+CNTK version= 2.6
 ```
 
 Currently, the possible choices of ```[IMG_TYPE]``` are:
