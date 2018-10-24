@@ -84,8 +84,8 @@ This environment can be obtained via:
 docker pull honghu/keras:tf-cu9.2-dnn7.2-py3-avx2-18.09
 ```
 which includes 
-* *Keras* ```v2.2.2```
-* *TensorFlow* ```v1.10.0```
+* *Keras* ```v2.2.4```
+* *TensorFlow* ```v1.11```
 * *[Intel® Distribution for Python](https://software.intel.com/en-us/distribution-for-python)* ```v2018.3.039```, including accelerated NumPy and scikit-learn.
 * *NVIDIA CUDA*```9.2```, *cuDNN*```7.2``` and *NCCL*```2.2```.
 * Must-to-have packages such as *XGBOOST*, *Pandas*, *OpenCV*, *imgaug*, *Matplotlib*, *Seaborn* and *Bokeh*.
@@ -98,7 +98,7 @@ This environment can be obtained via:
 docker pull honghu/keras:mx-cu9.2-dnn7.2-py3-18.09
 ```
 which includes
-* *[Keras-MXNet](https://github.com/awslabs/keras-apache-mxnet/wiki)* ```v2.2.2```
+* *[Keras-MXNet](https://github.com/awslabs/keras-apache-mxnet/wiki)* ```v2.2.4.1```
 * *MXNet* ```v1.3.0-dev```
 * *[GluonCV](https://gluon-cv.mxnet.io)* ```v0.3.0-dev```
 * *[Intel® Distribution for Python](https://software.intel.com/en-us/distribution-for-python)* ```v2018.3.039```, including accelerated NumPy and scikit-learn.
@@ -112,8 +112,8 @@ This environment can be obtained via:
 docker pull honghu/keras:cntk-cu9.2-dnn7.2-py3-18.09
 ```
 which includes
-* *Keras* ```v2.2.2```
-* *CNTK* ```v2.5.1```
+* *Keras* ```v2.2.4```
+* *CNTK* ```v2.6```
 * *NVIDIA CUDA*```9.2``` and *cuDNN*```7.2```.
 * Must-to-have packages such as *Pandas*, *OpenCV*, *imgaug*, *Matplotlib*, *Seaborn* and *Bokeh*.
 
@@ -544,5 +544,4 @@ Now, by opening a web browser and connecting to the URL given above, we are able
 Bravo!
 
 [[Back to Top]](#table-of-contents)
-
 
