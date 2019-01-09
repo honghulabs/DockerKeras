@@ -46,24 +46,27 @@ The following tables list the docker images maintained by us. All these listed i
 
 * Images within the repository:  [**honghu/keras**](https://hub.docker.com/r/honghu/keras/)
 
-    |Keras Backend |  Image's Tag  |  Description | Dockerfile |
-    |:---:|---|---|:---:|
-    |TensorFlow| tf-cu9.2-dnn7.2-py3-avx2-18.10 <br/> *tf-latest* | *TensorFlow* ```v1.11.0``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.4```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu9.2-dnn7.2-avx2-18.10.dockerfile) |
-    |TensorFlow| tf-cu9.2-dnn7.2-py3-avx2-18.09 | *TensorFlow* ```v1.10.1``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.2```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu9.2-dnn7.2-avx2-18.09.dockerfile) |
-    |TensorFlow| tf-cu9.2-dnn7.1-py3-avx2-18.08| *TensorFlow* ```v1.10.0``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.2```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu9.2-dnn7.1-avx2-18.08.dockerfile) |
-    |TensorFlow| tf-cu9-dnn7-py3-avx2-18.03  | *TensorFlow* ```v1.6.0``` <br/> *Keras* ```v2.1.5``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu9.0-dnn7.0-avx2-18.03.dockerfile)|
-    |TensorFlow| tf-cu9-dnn7-py3-avx2-18.01  | *TensorFlow* ```v1.4.1``` <br/> *Keras* ```v2.1.2```   | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu9.0-dnn7.0-avx2-18.01.dockerfile)|
-     |MXNet| mx-cu9.2-dnn7.2-py3-18.10 <br/> *mx-latest*  | *MXNet* ```v1.3.0-dev``` <br/> [*GluonCV*](https://gluon-cv.mxnet.io) ```v0.3.0-dev``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.2.4.1``` <br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/MXNet/mxnet-cu9.2-dnn7.2-18.10.dockerfile) |
-    |MXNet| mx-cu9.2-dnn7.2-py3-18.09 | *MXNet* ```v1.3.0-dev``` <br/> [*GluonCV*](https://gluon-cv.mxnet.io) ```v0.3.0-dev``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.2.2``` <br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/MXNet/mxnet-cu9.2-dnn7.2-18.09.dockerfile) |
-    |MXNet| mx-cu9.2-dnn7.1-py3-18.08 | *MXNet* ```v1.3.0-dev``` <br/> [*GluonCV*](https://gluon-cv.mxnet.io) ```v0.3.0-dev``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.2.0``` <br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/MXNet/mxnet-cu9.2-dnn7.1-18.08.dockerfile) |
-    |MXNet| mx-cu9-dnn7-py3-18.03  | *MXNet* ```v1.2.0``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.1.3``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/MXNet/mxnet-cu9.0-dnn7.0-18.03.dockerfile) |
-    |MXNet| mx-cu9-dnn7-py3-18.01  | *MXNet* ```v1.0.1``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki)  ```v1.2.2``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/MXNet/mxnet-cu9.0-dnn7.0-18.01.dockerfile) |
-    |CNTK| cntk-cu9.2-dnn7.2-py3-18.10 <br/> cntk-latest| *CNTK* ```v2.6``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.4```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/CNTK/cntk-cu9.2-dnn7.2-18.10.dockerfile) |
-    |CNTK| cntk-cu9.2-dnn7.2-py3-18.09| *CNTK* ```v2.5.1``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.2```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/CNTK/cntk-cu9.2-dnn7.2-18.09.dockerfile) |
-    |CNTK| cntk-cu9-dnn7-py3-18.08 | *CNTK* ```v2.5.1``` <br/> *Keras* ```v2.2.2```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/CNTK/cntk-cu9-dnn7-18.08.dockerfile) |
-    |CNTK| cntk-cu9-dnn7-py3-18.03  | *CNTK* ```v2.4``` <br/> *Keras* ```v2.1.5```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/CNTK/cntk-cu8-dnn6-18.03.dockerfile) |
+    |Keras Backend |  Image's Tag  |  Description | Dockerfile |  Suggested NV Driver |
+    |:---:|---|---|---|:---:|
+    |TensorFlow| tf-cu10.0-dnn7.4-py3-avx2-19.01 /<Br> **tf-latest** | *TensorFlow* ```v1.12.0``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2019.0-047``` <br/> *Keras* ```v2.2.4```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.3.7-1```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu10.0-dnn7.4-avx2-19.01.dockerfile)| R410 |
+    |TensorFlow| tf-cu9.2-dnn7.2-py3-avx2-18.10 | *TensorFlow* ```v1.11.0``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3-039``` <br/> *Keras* ```v2.2.4```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu9.2-dnn7.2-avx2-18.10.dockerfile)| R396 |
+    |TensorFlow| tf-cu9.2-dnn7.2-py3-avx2-18.09 | *TensorFlow* ```v1.10.1``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3-039``` <br/> *Keras* ```v2.2.2```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu9.2-dnn7.2-avx2-18.09.dockerfile) | R396 |
+    |TensorFlow| tf-cu9.2-dnn7.1-py3-avx2-18.08| *TensorFlow* ```v1.10.0``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3-039``` <br/> *Keras* ```v2.2.2```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu9.2-dnn7.1-avx2-18.08.dockerfile) | R396 |
+    |TensorFlow| tf-cu9-dnn7-py3-avx2-18.03  | *TensorFlow* ```v1.6.0``` <br/> *Keras* ```v2.1.5``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu9.0-dnn7.0-avx2-18.03.dockerfile)| R384 |
+    |TensorFlow| tf-cu9-dnn7-py3-avx2-18.01  | *TensorFlow* ```v1.4.1``` <br/> *Keras* ```v2.1.2```   | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu9.0-dnn7.0-avx2-18.01.dockerfile)| R384 |
+     |MXNet| mx-cu10.0-dnn7.4-py3-19.01 / <br/> **mx-latest**  | *MXNet* ```v1.4.0.rc0``` <br/> [*GluonCV*](https://gluon-cv.mxnet.io) ```v0.3.0``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2019.0-047``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.2.4.1``` <br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.3.7-1``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/MXNet/mxnet-cu10.0-dnn7.4-19.01.dockerfile) | R410 |
+     |MXNet| mx-cu9.2-dnn7.2-py3-18.10 | *MXNet* ```v1.3.0-dev``` <br/> [*GluonCV*](https://gluon-cv.mxnet.io) ```v0.3.0-dev``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3-039``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.2.4.1``` <br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/MXNet/mxnet-cu9.2-dnn7.2-18.10.dockerfile) | R396 |
+    |MXNet| mx-cu9.2-dnn7.2-py3-18.09 | *MXNet* ```v1.3.0-dev``` <br/> [*GluonCV*](https://gluon-cv.mxnet.io) ```v0.3.0-dev``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3-039``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.2.2``` <br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/MXNet/mxnet-cu9.2-dnn7.2-18.09.dockerfile) | R396 |
+    |MXNet| mx-cu9.2-dnn7.1-py3-18.08 | *MXNet* ```v1.3.0-dev``` <br/> [*GluonCV*](https://gluon-cv.mxnet.io) ```v0.3.0-dev``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3-039``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.2.0``` <br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/MXNet/mxnet-cu9.2-dnn7.1-18.08.dockerfile) | R396 |
+    |MXNet| mx-cu9-dnn7-py3-18.03  | *MXNet* ```v1.2.0``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki) ```v2.1.3``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/MXNet/mxnet-cu9.0-dnn7.0-18.03.dockerfile) | R384 |
+    |MXNet| mx-cu9-dnn7-py3-18.01  | *MXNet* ```v1.0.1``` <br/> [*Keras-MXNet*](https://github.com/awslabs/keras-apache-mxnet/wiki)  ```v1.2.2``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/MXNet/mxnet-cu9.0-dnn7.0-18.01.dockerfile) | R384 |
+     |CNTK| cntk-cu10.0-dnn7.4-py3-19.01 / <br/> **cntk-latest**| *CNTK* ```v2.6``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2019.0-047``` <br/> *Keras* ```v2.2.4``` <br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.3.7-1```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/CNTK/cntk-cu10.0-dnn7.4-19.01.dockerfile) | R410 |
+    |CNTK| cntk-cu9.2-dnn7.2-py3-18.10 | *CNTK* ```v2.6``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3-039``` <br/> *Keras* ```v2.2.4```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/CNTK/cntk-cu9.2-dnn7.2-18.10.dockerfile) | R396 |
+    |CNTK| cntk-cu9.2-dnn7.2-py3-18.09| *CNTK* ```v2.5.1``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3-039``` <br/> *Keras* ```v2.2.2```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/CNTK/cntk-cu9.2-dnn7.2-18.09.dockerfile) | R396 |
+    |CNTK| cntk-cu9-dnn7-py3-18.08 | *CNTK* ```v2.5.1``` <br/> *Keras* ```v2.2.2```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/CNTK/cntk-cu9-dnn7-18.08.dockerfile) | R384 |
+    |CNTK| cntk-cu9-dnn7-py3-18.03  | *CNTK* ```v2.4``` <br/> *Keras* ```v2.1.5```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/CNTK/cntk-cu8-dnn6-18.03.dockerfile) | R384 |
     |CNTK| cntk-cu8-dnn6-py3-18.01  | *CNTK* ```v2.2``` <br/> *Keras* ```v2.1.2```  | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/CNTK/cntk-cu8-dnn6-18.01.dockerfile) |
-    |Theano| theano-cu9.0-dnn7.0-py3-18.09 <br/> *theano-latest*  | Theano ```v1.0.2``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Keras* ```v2.2.2``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Theano/theano-cu9.0-dnn7.2-18.09.dockerfile)|
+    |Theano| theano-cu9.0-dnn7.0-py3-18.09 <br/> *theano-latest*  | Theano ```v1.0.2``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3-039``` <br/> *Keras* ```v2.2.2``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Theano/theano-cu9.0-dnn7.2-18.09.dockerfile)|
     |Theano| theano-cu9-dnn7-py3-18.03 | Theano ```v1.0.1``` <br/> *Keras* ```v2.1.5``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Theano/theano-cu9.0-dnn7.0-18.03.dockerfile)|
     |Theano| theano-cu9-dnn7-py3-18.01  | Theano ```v1.0.1``` <br/> *Keras* ```v2.1.2``` | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/Theano/theano-cu9.0-dnn7.0-18.01.dockerfile)|
     
@@ -71,23 +74,24 @@ The following tables list the docker images maintained by us. All these listed i
 
     |  Tag  |  Description | Dockerfile |
     |---|---|:---:|
-    | gpu-cu9.2-dnn7.2-18.09  | [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```18.04``` |[[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/IntelPython3/intelpy3-gpu-cu9.2-dnn7.2-18.09.dockerfile) |
-    | gpu-cu9.0-dnn7.2-18.09  | [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```16.04``` |[[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/IntelPython3/intelpy3-gpu-cu9.0-dnn7.2-18.09.dockerfile) |
-    | gpu-cu9.2-dnn7.1-18.08  | [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```18.04``` |[[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/IntelPython3/intelpy3-gpu-cu9.2-dnn7.1-18.08.dockerfile) |
-    | cpu-18.09  |  [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```18.04```<br/> | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/IntelPython3/intelpy3-cpu-18.09.dockerfile)|
-    | cpu-18.08  |  [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3.039``` <br/> *Ubuntu* ```18.04```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/IntelPython3/intelpy3-cpu-18.08.dockerfile)|
+    | gpu-cu10.0-dnn7.4-19.01  | [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2019.0-054``` <br/> *Ubuntu* ```18.04``` |[[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/IntelPython3/intelpy3-gpu-cu10.0-dnn7.4-19.01.dockerfile) |
+    | gpu-cu9.2-dnn7.2-18.09  | [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3-039``` <br/> *Ubuntu* ```18.04``` |[[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/IntelPython3/intelpy3-gpu-cu9.2-dnn7.2-18.09.dockerfile) |
+    | gpu-cu9.0-dnn7.2-18.09  | [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3-039``` <br/> *Ubuntu* ```16.04``` |[[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/IntelPython3/intelpy3-gpu-cu9.0-dnn7.2-18.09.dockerfile) |
+    | gpu-cu9.2-dnn7.1-18.08  | [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3-039``` <br/> *Ubuntu* ```18.04``` |[[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/IntelPython3/intelpy3-gpu-cu9.2-dnn7.1-18.08.dockerfile) |
+    | cpu-18.09  |  [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3-039``` <br/> *Ubuntu* ```18.04```<br/> | [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/IntelPython3/intelpy3-cpu-18.09.dockerfile)|
+    | cpu-18.08  |  [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3-039``` <br/> *Ubuntu* ```18.04```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/IntelPython3/intelpy3-cpu-18.08.dockerfile)|
 
 [[Back to Top]](#table-of-contents)
 ## Keras using TensorFlow Backend
 This environment can be obtained via:
 ```bash
-docker pull honghu/keras:tf-cu9.2-dnn7.2-py3-avx2-18.10
+docker pull honghu/keras:tf-cu10.0-dnn7.4-py3-avx2-19.01
 ```
 which includes 
 * *Keras* ```v2.2.4```
-* *TensorFlow* ```v1.11```
-* *[Intel® Distribution for Python](https://software.intel.com/en-us/distribution-for-python)* ```v2018.3.039```, including accelerated NumPy and scikit-learn.
-* *NVIDIA CUDA*```9.2```, *cuDNN*```7.2``` and *NCCL*```2.2```.
+* *TensorFlow* ```v1.12.0```
+* *[Intel® Distribution for Python](https://software.intel.com/en-us/distribution-for-python)* ```v2019.0-047```, including accelerated NumPy and scikit-learn.
+* *NVIDIA CUDA*```10.0```, *cuDNN*```7.4``` and *NCCL*```2.3.7-1```.
 * Must-to-have packages such as *XGBOOST*, *Pandas*, *OpenCV*, *imgaug*, *Matplotlib*, *Seaborn* and *Bokeh*.
 
 [[Back to Top]](#table-of-contents)
@@ -95,26 +99,26 @@ which includes
 ## Keras using MXNET Backend
 This environment can be obtained via:
 ```bash
-docker pull honghu/keras:mx-cu9.2-dnn7.2-py3-18.10
+docker pull honghu/keras:mx-cu10.0-dnn7.4-py3-19.01
 ```
 which includes
 * *[Keras-MXNet](https://github.com/awslabs/keras-apache-mxnet/wiki)* ```v2.2.4.1```
-* *MXNet* ```v1.3.0-dev```
-* *[GluonCV](https://gluon-cv.mxnet.io)* ```v0.3.0-dev```
-* *[Intel® Distribution for Python](https://software.intel.com/en-us/distribution-for-python)* ```v2018.3.039```, including accelerated NumPy and scikit-learn.
-* *NVIDIA CUDA*```9.2```, *cuDNN*```7.2``` and *NCCL*```2.2```.
+* *MXNet* ```v1.4.0.rc0```
+* *[GluonCV](https://gluon-cv.mxnet.io)* ```v0.3.0```
+* *[Intel® Distribution for Python](https://software.intel.com/en-us/distribution-for-python)* ```v2019.0-047```, including accelerated NumPy and scikit-learn.
+* *NVIDIA CUDA*```10.0```, *cuDNN*```7.4``` and *NCCL*```2.3.7-1```.
 * Must-to-have packages such as *XGBOOST*, *Pandas*, *OpenCV*, *imgaug*, *Matplotlib*, *Seaborn* and *Bokeh*.
 
 [[Back to Top]](#table-of-contents)
 ## Keras using CNTK Backend
 This environment can be obtained via:
 ```bash
-docker pull honghu/keras:cntk-cu9.2-dnn7.2-py3-18.10
+docker pull honghu/keras:cntk-cu10.0-dnn7.4-py3-19.01
 ```
 which includes
 * *Keras* ```v2.2.4```
 * *CNTK* ```v2.6```
-* *NVIDIA CUDA*```9.2``` and *cuDNN*```7.2```.
+* *NVIDIA CUDA*```10.0```, *cuDNN*```7.4``` and *NCCL*```2.3.7-1```.
 * Must-to-have packages such as *Pandas*, *OpenCV*, *imgaug*, *Matplotlib*, *Seaborn* and *Bokeh*.
 
 Remark
@@ -170,9 +174,9 @@ ndrun python3 check_tf_version.py
 ```
 And you should get the following output:
 ```
-TensorFlow version= 1.11.0
+TensorFlow version= 1.12.0
 ```
-which indicates that the current version of *TensorFlow* is ```1.11.0```. Now, the question then arises: where is this *TensorFlow* installed? Indeed, the *TensorFlow*'s version you've seen is from the *TensorFlow* installed inside our latest *TensorFlow* image.
+which indicates that the current version of *TensorFlow* is ```1.12.0```. Now, the question then arises: where is this *TensorFlow* installed? Indeed, the *TensorFlow*'s version you've seen is from the *TensorFlow* installed inside our latest *TensorFlow* image.
 
 To activate another image, we can use the option ```-t [IMG_TYPE]```. For example, let's now prepare a script that will import CNTK and print its version out:
 ```bash
@@ -218,23 +222,30 @@ ndrun python3 mnist_with_summaries.py
 ```
 The output should be similar to the following:
 ```
-Successfully downloaded train-images-idx3-ubyte.gz 9912422 bytes.
-Extracting /tmp/tensorflow/mnist/input_data/train-images-idx3-ubyte.gz
-Successfully downloaded train-labels-idx1-ubyte.gz 28881 bytes.
+...
 Extracting /tmp/tensorflow/mnist/input_data/train-labels-idx1-ubyte.gz
 Successfully downloaded t10k-images-idx3-ubyte.gz 1648877 bytes.
 Extracting /tmp/tensorflow/mnist/input_data/t10k-images-idx3-ubyte.gz
 Successfully downloaded t10k-labels-idx1-ubyte.gz 4542 bytes.
 Extracting /tmp/tensorflow/mnist/input_data/t10k-labels-idx1-ubyte.gz
-2017-10-16 17:33:59.597331: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1030] Found device 0 with properties: 
-name: Tesla V100-SXM2-16GB major: 7 minor: 0 memoryClockRate(GHz): 1.53
-pciBusID: 0000:06:00.0
-totalMemory: 15.77GiB freeMemory: 15.36GiB
-2017-10-16 17:33:59.597368: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla V100-SXM2-16GB, pci bus id: 0000:06:00.0, compute capability: 7.0)
-Accuracy at step 0: 0.1426
-Accuracy at step 10: 0.6942
-Accuracy at step 20: 0.8195
-Accuracy at step 30: 0.8626
+WARNING:tensorflow:From /opt/intel/intelpython3/lib/python3.6/site-packages/tensorflow/contrib/learn/python/learn/datasets/mnist.py:290: DataSet.__init__ (from tensorflow.contrib.learn.python.learn.datasets.mnist) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use alternatives such as official/mnist/dataset.py from tensorflow/models.
+2019-01-09 16:41:24.505114: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties:
+name: TITAN V major: 7 minor: 0 memoryClockRate(GHz): 1.455
+pciBusID: 0000:04:00.0
+totalMemory: 11.75GiB freeMemory: 11.34GiB
+2019-01-09 16:41:24.505174: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2019-01-09 16:41:25.018713: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-01-09 16:41:25.018764: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0
+2019-01-09 16:41:25.018771: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N
+2019-01-09 16:41:25.019071: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 10957 MB memory) -> physical GPU (device: 0, name: TITAN V, pci bus id: 0000:04:00.0, compute capability: 7.0)
+Accuracy at step 0: 0.0867
+Accuracy at step 10: 0.7258
+Accuracy at step 20: 0.8332
+Accuracy at step 30: 0.8655
+Accuracy at step 40: 0.87
+Accuracy at step 50: 0.8883
 ...
 ```
 
@@ -252,10 +263,9 @@ First, let's pull some models from the Google's GitHub repository. We also need 
 # Say, to your home directory.
 git clone https://github.com/tensorflow/models.git $HOME/models
 
-# There was a bug in the CIFAR10 example.
-# We temporarily switch to an older version of this repository.
+# Checkout to a screenshot that I'm positive that the benchmark can be executed succesfully
 cd $HOME/models && \
-git checkout c96ef83 
+git checkout c803290 
 
 # Let's also retrieve the CIFAR10 Dataset and put it into
 # our home directory.
@@ -275,31 +285,30 @@ ndrun python3 models/tutorials/image/cifar10/cifar10_multi_gpu_train.py --help
 which returns the following output:
 
 ```
-usage: cifar10_multi_gpu_train.py [-h] [--batch_size BATCH_SIZE]
-                                  [--data_dir DATA_DIR]
-                                  [--use_fp16 [USE_FP16]] [--nouse_fp16]
-                                  [--train_dir TRAIN_DIR]
-                                  [--max_steps MAX_STEPS]
-                                  [--num_gpus NUM_GPUS]
-                                  [--log_device_placement [LOG_DEVICE_PLACEMENT]]
-                                  [--nolog_device_placement]
+...
+flags:
 
-optional arguments:
-  -h, --help            show this help message and exit
-  --batch_size BATCH_SIZE
-                        Number of images to process in a batch.
-  --data_dir DATA_DIR   Path to the CIFAR-10 data directory.
-  --use_fp16 [USE_FP16]
-                        Train the model using fp16.
-  --nouse_fp16
-  --train_dir TRAIN_DIR
-                        Directory where to write event logs and checkpoint.
-  --max_steps MAX_STEPS
-                        Number of batches to run.
-  --num_gpus NUM_GPUS   How many GPUs to use.
-  --log_device_placement [LOG_DEVICE_PLACEMENT]
-                        Whether to log device placement.
-  --nolog_device_placement
+/workspace/models/tutorials/image/cifar10/cifar10_multi_gpu_train.py:
+  --[no]log_device_placement: Whether to log device placement.
+    (default: 'false')
+  --max_steps: Number of batches to run.
+    (default: '1000000')
+    (an integer)
+  --num_gpus: How many GPUs to use.
+    (default: '1')
+    (an integer)
+  --train_dir: Directory where to write event logs and checkpoint.
+    (default: '/tmp/cifar10_train')
+
+cifar10:
+  --batch_size: Number of images to process in a batch.
+    (default: '128')
+    (an integer)
+  --data_dir: Path to the CIFAR-10 data directory.
+    (default: '/tmp/cifar10_data')
+  --[no]use_fp16: Train the model using fp16.
+    (default: 'false')
+...
 ```
 As you can see, you can choose number of GPUs to be used via ```--num_gpus NUM_GPUS```  and you can set ```--data_dir TRAIN_DIR```, which tells the script where the downloaded *CIFAR10* dataset is.
 
@@ -315,33 +324,41 @@ ndrun -n 2 python3 models/tutorials/image/cifar10/cifar10_multi_gpu_train.py \
                        --max_steps=100 \
                        --fp16
 ```
-Your output should be similar to what I've got (2x NVIDIA Tesla V100):
+Your output should be similar to what I've got (2x NVIDIA Titan V):
 ```
+...
+Instructions for updating:
+Queue-based input pipelines have been replaced by `tf.data`. Use `tf.data.FixedLengthRecordDataset`.
 Filling queue with 20000 CIFAR images before starting to train. This will take a few minutes.
-2017-10-17 04:36:51.811596: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1030] Found device 0 with properties: 
-name: Tesla V100-SXM2-16GB major: 7 minor: 0 memoryClockRate(GHz): 1.53
+...
+2019-01-09 16:54:33.376230: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties:
+name: TITAN V major: 7 minor: 0 memoryClockRate(GHz): 1.455
+pciBusID: 0000:04:00.0
+totalMemory: 11.75GiB freeMemory: 11.34GiB
+2019-01-09 16:54:34.278037: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 1 with properties:
+name: TITAN V major: 7 minor: 0 memoryClockRate(GHz): 1.455
 pciBusID: 0000:06:00.0
-totalMemory: 15.77GiB freeMemory: 15.36GiB
-2017-10-17 04:36:52.434640: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1030] Found device 1 with properties: 
-name: Tesla V100-SXM2-16GB major: 7 minor: 0 memoryClockRate(GHz): 1.53
-pciBusID: 0000:07:00.0
-totalMemory: 15.77GiB freeMemory: 15.36GiB
-2017-10-17 04:36:52.434689: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1045] Device peer to peer matrix
-2017-10-17 04:36:52.434702: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1051] DMA: 0 1 
-2017-10-17 04:36:52.434726: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1061] 0:   Y Y 
-2017-10-17 04:36:52.434748: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1061] 1:   Y Y 
-2017-10-17 04:36:52.434758: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla V100-SXM2-16GB, pci bus id: 0000:06:00.0, compute capability: 7.0)
-2017-10-17 04:36:52.434765: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:1) -> (device: 1, name: Tesla V100-SXM2-16GB, pci bus id: 0000:07:00.0, compute capability: 7.0)
-2017-10-17 04:36:59.790431: step 0, loss = 4.68 (38.3 examples/sec; 3.346 sec/batch)
-2017-10-17 04:37:00.205024: step 10, loss = 4.59 (24464.4 examples/sec; 0.005 sec/batch)
-2017-10-17 04:37:00.323271: step 20, loss = 4.58 (20327.2 examples/sec; 0.006 sec/batch)
-2017-10-17 04:37:00.439341: step 30, loss = 4.50 (23105.6 examples/sec; 0.006 sec/batch)
-2017-10-17 04:37:00.558475: step 40, loss = 4.35 (22412.1 examples/sec; 0.006 sec/batch)
-2017-10-17 04:37:00.675634: step 50, loss = 4.48 (23193.5 examples/sec; 0.006 sec/batch)
-2017-10-17 04:37:00.791710: step 60, loss = 4.21 (23634.6 examples/sec; 0.005 sec/batch)
-2017-10-17 04:37:00.911417: step 70, loss = 4.26 (21293.4 examples/sec; 0.006 sec/batch)
-2017-10-17 04:37:01.028642: step 80, loss = 4.22 (22391.1 examples/sec; 0.006 sec/batch)
-2017-10-17 04:37:01.149847: step 90, loss = 3.98 (20516.7 examples/sec; 0.006 sec/batch)
+totalMemory: 11.75GiB freeMemory: 11.34GiB
+2019-01-09 16:54:34.280095: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0, 1
+2019-01-09 16:54:35.130083: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-01-09 16:54:35.130130: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 1
+2019-01-09 16:54:35.130137: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N Y
+2019-01-09 16:54:35.130141: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 1:   Y N
+2019-01-09 16:54:35.130998: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 10957 MB memory) -> physical GPU (device: 0, name: TITAN V, pci bus id: 0000:04:00.0, compute capability: 7.0)
+2019-01-09 16:54:35.131761: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:1 with 10957 MB memory) -> physical GPU (device: 1, name: TITAN V, pci bus id: 0000:06:00.0, compute capability: 7.0)
+WARNING:tensorflow:From /workspace/models/tutorials/image/cifar10/cifar10_multi_gpu_train.py:237: start_queue_runners (from tensorflow.python.training.queue_runner_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the `tf.data` module.
+2019-01-09 16:54:41.808379: step 0, loss = 4.68 (40.7 examples/sec; 3.149 sec/batch)
+2019-01-09 16:54:42.546906: step 10, loss = 4.61 (17071.7 examples/sec; 0.007 sec/batch)
+2019-01-09 16:54:42.659138: step 20, loss = 4.46 (25444.7 examples/sec; 0.005 sec/batch)
+2019-01-09 16:54:42.755444: step 30, loss = 4.40 (29393.4 examples/sec; 0.004 sec/batch)
+2019-01-09 16:54:42.861769: step 40, loss = 4.27 (27947.5 examples/sec; 0.005 sec/batch)
+2019-01-09 16:54:42.951161: step 50, loss = 4.18 (29182.5 examples/sec; 0.004 sec/batch)
+2019-01-09 16:54:43.035104: step 60, loss = 4.19 (30707.3 examples/sec; 0.004 sec/batch)
+2019-01-09 16:54:43.123850: step 70, loss = 4.21 (16449.5 examples/sec; 0.008 sec/batch)
+2019-01-09 16:54:43.229280: step 80, loss = 4.17 (32346.5 examples/sec; 0.004 sec/batch)
+2019-01-09 16:54:43.307614: step 90, loss = 4.27 (34882.1 examples/sec; 0.004 sec/batch)
 ```
 Remark
 *  As you activate a docker image using ```ndrun```, your current working directory on the host machine, e.g. ```$HOME```,  will automatically be mounted to ```/workspace```, a default working directory inside the docker container. 
@@ -354,7 +371,7 @@ Remark
 ## Advanced Usage of the Command Line 
 
 ### Avoid Giving Your Script Extra GPUs
-Here's a mistake: the script sees two available GPUs. However, we ask it to use only one of the available GPUs for training:
+Here's a mistake: we create a docker container that sees two available GPUs and we however use only one of the available GPUs for training (specifying ```--num_gpu=1```):
 
 ```bash
 # Switch to your home directory.
@@ -368,36 +385,34 @@ ndrun -n 2 python3 models/tutorials/image/cifar10/cifar10_multi_gpu_train.py \
                        --max_steps=100 \
                        --fp16
 ```
-During the run-time of this script, we can check the status of GPUs via```nvidia-smi```:
+During the run-time of this script, we can check the status of GPUs via ```nvidia-smi```:
 ```
 chweng@server1:~$ nvidia-smi
-Wed Aug  8 01:28:01 2018
+Thu Jan 10 00:58:22 2019
 +-----------------------------------------------------------------------------+
-| NVIDIA-SMI 384.81                 Driver Version: 384.81                    |
+| NVIDIA-SMI 410.79       Driver Version: 410.79       CUDA Version: 10.0     |
 |-------------------------------+----------------------+----------------------+
 | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
 | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
 |===============================+======================+======================|
-|   0  GeForce GTX 108...  Off  | 00000000:01:00.0  On |                  N/A |
-| 31%   58C    P2   143W / 250W |  10844MiB / 11171MiB |     72%      Default |
+|   0  TITAN V             On   | 00000000:04:00.0 Off |                  N/A |
+| 31%   49C    P2    92W / 250W |  11780MiB / 12036MiB |     67%      Default |
 +-------------------------------+----------------------+----------------------+
-|   1  GeForce GTX 108...  Off  | 00000000:02:00.0 Off |                  N/A |
-| 27%   51C    P2    58W / 250W |  10622MiB / 11172MiB |      0%      Default |
+|   1  TITAN V             On   | 00000000:06:00.0 Off |                  N/A |
+| 32%   46C    P8    30W / 250W |    502MiB / 12036MiB |      0%      Default |
 +-------------------------------+----------------------+----------------------+
-                                                                               
+
 +-----------------------------------------------------------------------------+
 | Processes:                                                       GPU Memory |
 |  GPU       PID   Type   Process name                             Usage      |
 |=============================================================================|
-|    0      3046      C   python3                                    10451MiB |
-|    1      3046      C   python3                                    10611MiB |
+|    0      4783      C   python3                                    11769MiB |
+|    1      4783      C   python3                                      491MiB |
 +-----------------------------------------------------------------------------+
 ```
-The above output reveals that *GPU0* is being utilized (*GPU-Util*=72%). Interestingly, although *GPU1*'s RAM is almost fully occupied, it's not utilized at all (*GPU-Util*=0%).
+The above output indicates that *GPU0* was being utilized (*GPU-Util*=67%). Interestingly, although *GPU1*'s RAM was somewhat occupied, *GPU1* was not computing at all (*GPU-Util*=0%).
 
-This is a default behavior of *TensorFlow*. By default, when *TensorFlow* gets started, it begins to aggressively occupy the RAM of all the available GPU devices.
-
-Avoid this mistake, otherwise you'll waste your GPU resources.
+Avoid this mistake, otherwise you'll waste your GPU resources. (*GPU1* was occupied but was not computing at all.)
 
 [[Back to Top]](#table-of-contents)
 ### Set ```NV_GPU``` If You Know Which GPUs You'd Like to Use
