@@ -47,7 +47,7 @@ The following tables list the docker images maintained by us. All these listed i
 * Images within the repository:  [**honghu/keras**](https://hub.docker.com/r/honghu/keras/)
 
     |Keras Backend |  Image's Tag  |  Description | Dockerfile |  Suggested NV Driver |
-    |:---:|---|---|---|:---:|
+    |:---:|---|---|:---:|:---:|
     |TensorFlow| tf-cu10.0-dnn7.4-py3-avx2-19.01 /<Br> *tf-latest* | *TensorFlow* ```v1.12.0``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2019.0-047``` <br/> *Keras* ```v2.2.4```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.3.7-1```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu10.0-dnn7.4-avx2-19.01.dockerfile)| R410 |
     |TensorFlow| tf-cu9.2-dnn7.2-py3-avx2-18.10 | *TensorFlow* ```v1.11.0``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3-039``` <br/> *Keras* ```v2.2.4```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu9.2-dnn7.2-avx2-18.10.dockerfile)| R396 |
     |TensorFlow| tf-cu9.2-dnn7.2-py3-avx2-18.09 | *TensorFlow* ```v1.10.1``` <br/> [*Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python) ```v2018.3-039``` <br/> *Keras* ```v2.2.2```<br/> [*NCCL*](https://developer.nvidia.com/nccl) ```v2.2.13```| [[Click]](https://github.com/chi-hung/DockerKeras/blob/master/Dockerfiles/TensorFlow/tensorflow-cu9.2-dnn7.2-avx2-18.09.dockerfile) | R396 |
