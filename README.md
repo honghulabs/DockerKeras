@@ -38,7 +38,7 @@ See below for more details about these environments.
 ## Before Getting Started
 * *NVIDIA-Docker2* has to be installed. See [[here]](https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)#prerequisites) for how to install and [[here]](https://devblogs.nvidia.com/gpu-containers-runtime/) for its introduction.
 * Docker needs to be configured. For example, you may have to add your user to the ```docker``` group. see [[here]](https://docs.docker.com/install/linux/linux-postinstall/) for Docker setup.
-* Beware: the recent images we've built contain CUDA```9.2```, which requires NVIDIA driver version ```>=396```. You can get the latest NVIDIA driver [[here]](http://www.nvidia.com/Download/index.aspx).
+* Beware: the latest images include CUDA```10```, which requires NVIDIA driver version ```>=410.XX```. You can get the latest NVIDIA driver [[here]](http://www.nvidia.com/Download/index.aspx).
 
 [[Back to Top]](#table-of-contents)
 ## Summary of the Images
