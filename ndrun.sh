@@ -451,6 +451,9 @@ if [ -z "${INTEPRETER}" ] && [ -z "${EXE}" ] ;then
 
   if [ -z "${ALIAS}" ] ;then
     docker_cmd="nvidia-docker run -it \
+                    --shm-size=1g \
+                    --ulimit memlock=-1 \
+                    --ulimit stack=67108864 \
                     -v ${HOST_VOL}:${CONTAINER_VOL} \
                     -p ${PORT}:8888 \
                     ${EXTRA_OPTS} \
@@ -461,6 +464,9 @@ if [ -z "${INTEPRETER}" ] && [ -z "${EXE}" ] ;then
     container_id=$($docker_cmd)  
   else
     docker_cmd="nvidia-docker run -it \
+                    --shm-size=1g \
+                    --ulimit memlock=-1 \
+                    --ulimit stack=67108864 \
                     --name ${ALIAS} \
                     -v ${HOST_VOL}:${CONTAINER_VOL} \
                     -p ${PORT}:8888 \
@@ -477,7 +483,7 @@ if [ -z "${INTEPRETER}" ] && [ -z "${EXE}" ] ;then
 
     # Take a sleep for a while. This is necessary since it takes time for
     # Jupyter Notebook to start.
-    sleep 1.5
+    sleep 1.7
     # After Jupyter Notebook starts, we are able to get its token.
     notebook_token=$(docker logs "${container_id}" | tail -n 1 | cut -d"=" -f 2)
 
@@ -503,6 +509,9 @@ elif [ -z $EXE ] ;then
   echo -e ${CL_GREEN}Executing the given command...${NC}
 
   docker_cmd="nvidia-docker run -it \
+                    --shm-size=1g \
+                    --ulimit memlock=-1 \
+                    --ulimit stack=67108864 \
                     -v ${HOST_VOL}:${CONTAINER_VOL} \
                     --rm \
                     ${EXTRA_OPTS} \
@@ -516,6 +525,9 @@ elif [ -z $EXE ] ;then
 # Or, if a script is passed for running, run it.
 else
   docker_cmd="nvidia-docker run -it \
+                    --shm-size=1g \
+                    --ulimit memlock=-1 \
+                    --ulimit stack=67108864 \
                     -v ${HOST_VOL}:${CONTAINER_VOL} \
                     --rm \
                     ${EXTRA_OPTS} \
