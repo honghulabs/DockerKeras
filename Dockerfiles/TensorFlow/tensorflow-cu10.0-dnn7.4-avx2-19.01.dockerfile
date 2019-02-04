@@ -34,17 +34,22 @@ FROM honghu/intelpython3:gpu-cu10.0-dnn7.4-19.01
 LABEL maintainer="Chi-Hung Weng <wengchihung@gmail.com>"
 
 # Specify number of CPUs to be used while building TensorFlow.
-ARG NUM_CPUS_FOR_BUILD=12
+ARG NUM_CPUS_FOR_BUILD=16
+
 # Bazel version
 ARG BAZEL_VER=0.15.0
+
 # TensorFlow version
 ARG TF_BR=r1.12
+ARG TF_COMMIT=a6d8ffa
+# The commit `a6d8ffa` refers to TensorFlow v1.12.0 (stable).
+
 # Keras version
 ARG KERAS_VER=2.2.4
-# NCCL version
-#ARG NCCL2_FNAME=nccl_2.2.13-1+cuda9.2_x86_64
+
 # TensorRT version
 ARG TENSORRT_VERSION=5.0.2
+
 # Set up Bazel.
 # Running bazel inside a `docker build` command causes trouble, cf:
 #   https://github.com/bazelbuild/bazel/issues/134
@@ -62,6 +67,7 @@ RUN curl -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHT
     chmod +x bazel-*.sh && \
     ./bazel-${BAZEL_VER}-installer-linux-x86_64.sh && \
     rm -f /bazel/bazel-${BAZEL_VER}-installer-linux-x86_64.sh
+
 # # Get & set up NCCL2
 # WORKDIR /opt
 # COPY ${NCCL2_FNAME}.* /opt/
@@ -75,7 +81,7 @@ RUN mkdir /usr/local/cuda/lib && \
     ln -s /usr/lib/x86_64-linux-gnu/libnccl.so.2 /usr/local/cuda/lib/libnccl.so.2 && \
     ln -s /usr/include/nccl.h /usr/local/cuda/include/nccl.h
 
-# Get the TensorRT runtime.
+# Get TensorRT runtime.
 RUN apt update && \
     apt install -y nvinfer-runtime-trt-repo-ubuntu1804-$TENSORRT_VERSION-ga-cuda10.0
 RUN apt update && apt install -y --no-install-recommends \
@@ -91,10 +97,13 @@ RUN apt update && apt install -y --no-install-recommends \
 RUN pip --no-cache-dir install keras_applications keras_preprocessing --no-deps && \
     pip --no-cache-dir install protobuf
 
-# Get TensorFlow.
-RUN git clone --branch=${TF_BR} --depth=1 https://github.com/tensorflow/tensorflow.git /opt/tensorflow
+# Get TensorFlow
+RUN git clone --branch=${TF_BR} --depth=1 https://github.com/tensorflow/tensorflow.git /opt/tensorflow && \
+    cd /opt/tensorflow && \
+    git branch ${TF_COMMIT} && \
+    git checkout ${TF_COMMIT}
 
-# Settings of TensorFlow (CUDA9, cuDNN7, NCCL2, Python3, etc).
+# Configs of TensorFlow
 ENV CI_BUILD_PYTHON=python3 \
     LD_LIBRARY_PATH=/usr/local/cuda/extras/CUPTI/lib64:${LD_LIBRARY_PATH} \
     TF_NEED_CUDA=1 \
@@ -103,6 +112,7 @@ ENV CI_BUILD_PYTHON=python3 \
     TF_CUDA_VERSION=10.0 \
     TF_CUDNN_VERSION=7 \
     TF_NCCL_VERSION=2
+# ENV TF_NEED_MPI=1
 # ENV NCCL_INSTALL_PATH=/opt/nccl2
 
 # Build and install TensorFlow.
