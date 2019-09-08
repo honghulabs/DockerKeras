@@ -1,5 +1,5 @@
 # DockerKeras
-<img src="https://i.imgur.com/xsEfL7j.png" alt="drawing" width="25px"/> *Supported by HonghuTech, a Taiwanese Deep Learning Solutions Provider*
+<img src="https://i.imgur.com/xsEfL7j.png" alt="drawing" width="25px"/> *Maintained by HonghuTech, a Taiwan-based Deep-Learning Solutions Provider*
 ---
 [![Docker Pulls](https://img.shields.io/docker/pulls/honghu/keras.svg)](https://hub.docker.com/r/honghu/keras/) [![GithubStars](https://img.shields.io/github/stars/chi-hung/DockerKeras.svg?style=social&label=Stars)](https://github.com/chi-hung/DockerKeras/)
 
